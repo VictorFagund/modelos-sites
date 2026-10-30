@@ -234,6 +234,45 @@ footer.rodape{padding:44px 0 60px;border-top:1px solid var(--linha);display:flex
   .esteira{overflow-x:auto}
   *{transition:none!important}
 }
+
+/* ---------- ateliê 3D ---------- */
+.estudio{padding-top:40px}
+.estudio-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:28px;align-items:stretch;background:var(--concreto-3);border-radius:32px;padding:14px}
+.palco3d{position:relative;border-radius:24px;background:radial-gradient(120% 90% at 50% 20%,#e4e3de,var(--concreto) 70%);min-height:560px;overflow:hidden}
+.palco3d canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y;opacity:0;transition:opacity .6s}
+.palco3d canvas:active{cursor:grabbing}
+.palco3d.pronto canvas{opacity:1}
+.palco3d .dica{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(244,243,239,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:.88rem;font-weight:500;pointer-events:none;transition:opacity .5s;white-space:nowrap}
+.palco3d.tocou .dica{opacity:0}
+.palco3d .dica svg{width:18px;height:18px;animation:balanca 2.4s ease-in-out infinite}
+@keyframes balanca{50%{transform:translateX(6px)}}
+.palco3d .etq3d{position:absolute;left:20px;top:18px;padding:6px 12px;border-radius:999px;background:var(--tinta);color:var(--branco);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.palco3d.sem-3d canvas{display:none}
+.palco3d.sem-3d::after{content:"Este aparelho não abriu a peça em 3D.";position:absolute;inset:45% 20px auto;text-align:center;color:var(--tinta-2)}
+.painel{padding:26px 22px 22px 8px;display:flex;flex-direction:column;gap:22px}
+.painel h2{font-size:clamp(2.2rem,3.6vw,3.2rem)}
+.painel p{margin:0;color:var(--tinta-2)}
+.painel .rotulo{font-weight:600;font-size:.9rem;margin-bottom:10px;display:flex;justify-content:space-between}
+.painel .rotulo span{color:var(--tinta-2);font-weight:500}
+.formas{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.forma{all:unset;cursor:pointer;display:grid;justify-items:center;gap:6px;padding:12px 4px 10px;border-radius:14px;background:var(--branco);font-size:.85rem;font-weight:600;transition:background .25s,color .25s,transform .25s var(--ease)}
+.forma svg{width:34px;height:34px}
+.forma:hover{transform:translateY(-2px)}
+.forma[aria-pressed="true"]{background:var(--tinta);color:var(--branco)}
+.vidros{display:flex;flex-wrap:wrap;gap:10px}
+.vidro{all:unset;cursor:pointer;width:40px;height:40px;border-radius:50%;background:var(--g);box-shadow:inset 0 -4px 0 rgba(0,0,0,.14),inset 0 2px 3px rgba(255,255,255,.4),0 0 0 2px var(--concreto-3);transition:box-shadow .25s,transform .25s var(--ease)}
+.vidro:hover{transform:scale(1.08)}
+.vidro[aria-pressed="true"]{box-shadow:inset 0 -4px 0 rgba(0,0,0,.14),inset 0 2px 3px rgba(255,255,255,.4),0 0 0 3px var(--concreto-3),0 0 0 5px var(--tinta)}
+.ficha3d{display:flex;gap:22px;font-size:.92rem;color:var(--tinta-2);border-top:1px solid var(--linha);padding-top:16px}
+.ficha3d b{display:block;color:var(--tinta);font-size:1rem}
+.compra3d{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-top:auto}
+.compra3d .preco{font:800 2rem/1 var(--display);letter-spacing:-.03em}
+.compra3d small{display:block;font:500 .82rem/1.3 var(--texto);color:var(--tinta-2);letter-spacing:0;margin-top:4px}
+@media (max-width:1000px){
+  .estudio-grid{grid-template-columns:1fr;padding:10px}
+  .palco3d{min-height:420px}
+  .painel{padding:12px 10px 16px}
+}
 </style>
 </head>
 <body>
@@ -268,6 +307,23 @@ footer.rodape{padding:44px 0 60px;border-top:1px solid var(--linha);display:flex
       <div class="titulo"><h2 id="t-loja">A loja</h2><p>Filtre pela cor do esmalte. Peça marcada como única não volta: quando sai, sai.</p></div>
       <div class="esmaltes" role="group" aria-label="Filtrar por esmalte" id="esmaltes"></div>
       <div class="grade" id="grade"></div>
+    </div>
+  </section>
+
+  <section class="estudio" id="estudio" aria-labelledby="t-est">
+    <div class="wrap estudio-grid">
+      <div class="palco3d" id="palco3d">
+        <canvas id="peca3d" tabindex="0" aria-label="Peça em 3D. Arraste ou use as setas para girar."></canvas>
+        <span class="etq3d">Sob encomenda</span>
+        <p class="dica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 13V5a2 2 0 1 1 4 0v6m0-1a2 2 0 1 1 4 0v2m0-1a2 2 0 1 1 4 0v4a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L4 15a2 2 0 0 1 3-2.5l1 1.5"/></svg>Arraste para girar a peça</p>
+      </div>
+      <div class="painel">
+        <div><h2 id="t-est">Monte a sua peça</h2><p style="margin-top:12px">Escolha a forma e o esmalte e gire para ver de todos os lados. A Lívia torneia a sua na próxima fornada.</p></div>
+        <div><div class="rotulo">Forma <span id="nome-forma"></span></div><div class="formas" role="group" aria-label="Forma" id="formas"></div></div>
+        <div><div class="rotulo">Esmalte <span id="nome-esmalte"></span></div><div class="vidros" role="group" aria-label="Esmalte" id="vidros"></div></div>
+        <div class="ficha3d"><div><b id="f-ml"></b>capacidade</div><div><b id="f-med"></b>medidas</div><div><b>15 dias</b>para ficar pronta</div></div>
+        <div class="compra3d"><div class="preco" id="preco3d"></div><button class="btn" id="encomendar">Encomendar esta peça</button></div>
+      </div>
     </div>
   </section>
 
@@ -378,9 +434,18 @@ const VOZES = [
 ];
 
 const brl = v => v.toLocaleString("pt-BR", {style:"currency", currency:"BRL"});
-const src = p => `img/${p.img}.webp`;
+const src = p => p.foto || `img/${p.img}.webp`;
 const $ = id => document.getElementById(id);
 const porId = Object.fromEntries(PRODUTOS.map(p => [p.id, p]));
+// peças montadas no ateliê 3D ficam guardadas junto com a sacola
+let encomendas = {};
+try { encomendas = JSON.parse(localStorage.getItem("torrao-encomendas") || "{}"); } catch {}
+Object.assign(porId, encomendas);
+window.registrarPeca = p => {
+  porId[p.id] = p; encomendas[p.id] = p;
+  try { localStorage.setItem("torrao-encomendas", JSON.stringify(encomendas)); } catch {}
+  adicionar(p.id);
+};
 
 // sacola guardada no navegador
 let sacola = {};
@@ -489,6 +554,33 @@ addEventListener("scroll", () => { rolarProcesso(); $("topo").classList.toggle("
 addEventListener("resize", rolarProcesso);
 
 desenharFiltro(); desenharGrade(); desenharSacola(); rolarProcesso();
+</script>
+<script type="module">
+import { peca3d, FORMAS3D, ESMALTES3D, foto } from "./peca3d.js";
+const $ = id => document.getElementById(id);
+const brl = v => v.toLocaleString("pt-BR", {style:"currency", currency:"BRL"});
+const ICONE = {
+  caneca:'<path d="M7 7h9v10a3 3 0 0 1-3 3h-3a3 3 0 0 1-3-3V7Z"/><path d="M16 9h1.5a2.5 2.5 0 0 1 0 5H16"/>',
+  copo:'<path d="M8 6h8l-.8 12a2 2 0 0 1-2 1.8h-2.4a2 2 0 0 1-2-1.8L8 6Z"/>',
+  tigela:'<path d="M4 10h16a8 8 0 0 1-16 0Z"/><path d="M9 18.5h6"/>',
+  vaso:'<path d="M10 4h4v2c0 1 3 2.5 3 7s-2 7-5 7-5-2.5-5-7 3-6 3-7V4Z"/>',
+};
+const extra = e => ["respingo", "confete"].includes(e) ? 10 : 0;
+function desenhar(){
+  const f = peca3d.forma(), e = peca3d.esmalte(), F = FORMAS3D[f];
+  $("formas").innerHTML = Object.entries(FORMAS3D).map(([k, v]) => `<button class="forma" data-f="${k}" aria-pressed="${k === f}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">${ICONE[k]}</svg>${v.nome}</button>`).join("");
+  $("vidros").innerHTML = Object.entries(ESMALTES3D).map(([k, v]) => `<button class="vidro" data-e="${k}" style="--g:${v.css}" aria-pressed="${k === e}" aria-label="${v.nome}" title="${v.nome}"></button>`).join("");
+  $("nome-forma").textContent = F.nome; $("nome-esmalte").textContent = ESMALTES3D[e].nome + (extra(e) ? " · + R$ 10" : "");
+  $("f-ml").textContent = F.ml; $("f-med").textContent = F.med;
+  $("preco3d").innerHTML = `${brl(F.preco + extra(e))}<small>feita à mão, uma de cada</small>`;
+}
+$("formas").addEventListener("click", ev => { const b = ev.target.closest("[data-f]"); if (b && b.dataset.f !== peca3d.forma()) { peca3d.setForma(b.dataset.f); desenhar(); } });
+$("vidros").addEventListener("click", ev => { const b = ev.target.closest("[data-e]"); if (b) { peca3d.setEsmalte(b.dataset.e); desenhar(); } });
+$("encomendar").addEventListener("click", () => {
+  const f = peca3d.forma(), e = peca3d.esmalte(), F = FORMAS3D[f];
+  window.registrarPeca({ id: `encomenda-${f}-${e}`, nome: `${F.nome} ${ESMALTES3D[e].nome} (encomenda)`, desc: "Sob encomenda, pronta em 15 dias", preco: F.preco + extra(e), foto: foto(), unica: false });
+});
+desenhar();
 </script>
 </body>
 </html>
