@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modelos de site · Victor Fagundes</title>
+<meta name="description" content="Modelos de site prontos para oficina mecânica e clínica, com WhatsApp e agenda. Escolha um e eu coloco o seu negócio nele.">
+<style>
+@font-face{font-family:"Archivo";src:url(fonts/archivo-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Archivo";src:url(fonts/archivo-600.woff2) format("woff2");font-weight:600;font-display:swap}
+:root{
+  --bg:#d9dcd6;
+  --bg-2:#cfd3cc;
+  --ink:#141716;
+  --ink-2:#4b5250;
+  --rule:#b6bbb3;
+  --bezel:#141716;
+  --go:#15803d;
+  --font:"Archivo",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--font);-webkit-font-smoothing:antialiased}
+::selection{background:var(--ink);color:var(--bg)}
+a{color:inherit;text-underline-offset:.2em}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+
+header{padding:28px 0 0;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.me{font-weight:600}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;background:var(--go);color:#fff;font-weight:600;text-decoration:none;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:20px;height:20px}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+
+h1{font-weight:600;font-size:clamp(2.6rem,6vw,5rem);line-height:.98;letter-spacing:-.04em;margin:72px 0 20px;max-width:16ch;text-wrap:balance}
+.lead{font-size:1.25rem;color:var(--ink-2);max-width:46ch;margin:0 0 64px}
+
+.models{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.model{background:var(--bg-2);border-radius:28px;padding:36px 32px 32px;display:grid;grid-template-rows:auto 1fr;gap:28px}
+.phone{justify-self:center;width:292px;height:600px;border-radius:44px;background:var(--bezel);padding:12px;box-shadow:0 30px 60px -30px rgba(20,23,22,.55)}
+.screen{width:100%;height:100%;border-radius:33px;overflow:hidden;position:relative;background:#fff}
+.screen iframe{border:0;width:390px;height:768px;transform:scale(.6923);transform-origin:0 0;position:absolute;inset:0}
+.model h2{font-weight:600;font-size:1.8rem;letter-spacing:-.025em;line-height:1.1;margin:0 0 8px}
+.model p{margin:0 0 18px;color:var(--ink-2)}
+.model ul{margin:0 0 24px;padding:0;list-style:none;display:grid;gap:8px}
+.model li{display:flex;gap:10px;align-items:baseline}
+.model li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ink);flex:none;transform:translateY(-2px)}
+.model .acts{display:flex;flex-wrap:wrap;gap:10px}
+
+.how{padding:110px 0 90px;display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.how h2{font-weight:600;font-size:clamp(2rem,4vw,3rem);letter-spacing:-.035em;line-height:1;margin:0}
+.how ol{margin:0;padding:0;list-style:none;counter-reset:p}
+.how li{counter-increment:p;display:grid;grid-template-columns:3rem 1fr;gap:6px 12px;padding:20px 0;border-top:1px solid var(--rule)}
+.how li::before{content:counter(p);font-weight:600;font-size:1.6rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.how li b{display:block;font-size:1.15rem}
+.how li span{color:var(--ink-2)}
+
+footer{padding:36px 0 56px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;color:var(--ink-2);font-size:.92rem}
+
+@media (max-width:860px){
+  .models{grid-template-columns:1fr}
+  .how{grid-template-columns:1fr;gap:24px;padding:80px 0 64px}
+  h1{margin-top:48px}
+  .lead{margin-bottom:44px}
+  .model{padding:28px 18px 24px}
+  .me .tag{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="me">Victor Fagundes<span class="tag"> · sites para pequenos negócios</span></span>
+    <a class="btn" data-wa="Olá! Vi os modelos de site e quero saber mais." href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>Falar comigo</a>
+  </header>
+
+  <h1>Seu negócio com um site que já funciona.</h1>
+  <p class="lead">Escolha o modelo do seu ramo. Eu troco nome, cores, serviços e fotos, e o seu cliente chama você no WhatsApp com um toque.</p>
+
+  <div class="models">
+    <article class="model">
+      <div class="phone"><div class="screen"><iframe src="oficina/" title="Prévia do modelo para oficina mecânica" loading="lazy" tabindex="-1"></iframe></div></div>
+      <div>
+        <h2>Oficina mecânica</h2>
+        <p>Para quem conserta carro e quer receber pedido de orçamento já com o problema descrito.</p>
+        <ul>
+          <li>Etiqueta de troca de óleo que calcula a próxima troca e agenda no WhatsApp</li>
+          <li>Tabela de serviços com tempo médio</li>
+          <li>Horário do dia destacado e endereço</li>
+        </ul>
+        <div class="acts"><a class="btn ghost" href="oficina/">Abrir o modelo</a><a class="btn" data-wa="Olá! Quero o modelo de site para oficina." href="#">Quero este</a></div>
+      </div>
+    </article>
+    <article class="model">
+      <div class="phone"><div class="screen"><iframe src="clinica/" title="Prévia do modelo para clínica" loading="lazy" tabindex="-1"></iframe></div></div>
+      <div>
+        <h2>Clínica e consultório</h2>
+        <p>Para consultório de uma ou várias especialidades que agenda pelo WhatsApp.</p>
+        <ul>
+          <li>Horários livres por especialidade, que viram mensagem pronta para a recepção</li>
+          <li>Uma cor por especialidade, do site até a faixa no chão</li>
+          <li>Primeira consulta explicada e acessibilidade</li>
+        </ul>
+        <div class="acts"><a class="btn ghost" href="clinica/">Abrir o modelo</a><a class="btn" data-wa="Olá! Quero o modelo de site para clínica." href="#">Quero este</a></div>
+      </div>
+    </article>
+  </div>
+
+  <section class="how">
+    <h2>Como funciona</h2>
+    <ol>
+      <li><div><b>Você escolhe o modelo</b><span>E me manda nome, logo, endereço, serviços e algumas fotos pelo WhatsApp.</span></div></li>
+      <li><div><b>Eu monto e te mostro</b><span>Você vê o site com os seus dados num link e pede os ajustes.</span></div></li>
+      <li><div><b>O site vai para o seu endereço</b><span>Com o seu domínio .com.br e o botão de WhatsApp apontando para o seu número.</span></div></li>
+    </ol>
+  </section>
+
+  <footer>
+    <span>Os modelos usam empresas e dados fictícios.</span>
+    <a class="btn" data-wa="Olá! Vi os modelos de site e quero saber mais." href="#">Falar comigo no WhatsApp</a>
+  </footer>
+</div>
+<script>
+// Seu número: troque aqui (formato 55DDDNUMERO).
+const WHATSAPP = "";
+document.querySelectorAll("[data-wa]").forEach(a => { a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(a.dataset.wa)}`; a.target = "_blank"; a.rel = "noopener"; });
+</script>
+</body>
+</html>

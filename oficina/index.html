@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auto Mecânica Serra Azul · Mecânica geral</title>
+<meta name="description" content="Mecânica geral, freios, suspensão e troca de óleo com orçamento por escrito antes do serviço. Site de demonstração.">
+<style>
+@font-face{font-family:"Shoulders";src:url(../fonts/big-shoulders-display-800.woff2) format("woff2");font-weight:800;font-display:swap}
+@font-face{font-family:"Shoulders";src:url(../fonts/big-shoulders-display-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Archivo";src:url(../fonts/archivo-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Archivo";src:url(../fonts/archivo-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Marker";src:url(../fonts/permanent-marker-400.woff2) format("woff2");font-display:swap}
+
+:root{
+  --glass:#13211f;          /* para-brisa */
+  --glass-2:#1a2d2a;
+  --glass-line:#2a403c;
+  --frit:#070c0b;           /* faixa de pontos pretos da borda do vidro */
+  --on-glass:#e9f0ec;
+  --on-glass-2:#a9bcb5;
+  --vinyl:#f6f5ef;          /* adesivo */
+  --vinyl-ink:#1c2321;
+  --vinyl-rule:#c9cbc2;
+  --red:#d42a1f;
+  --blue:#1d4fa0;
+  --marker:#1b2c6b;
+  --go:#25d366;
+  --go-ink:#06301a;
+  --display:"Shoulders","Archivo",sans-serif;
+  --body:"Archivo",system-ui,sans-serif;
+  --hand:"Marker","Archivo",cursive;
+}
+*{box-sizing:border-box}
+html{scrollbar-color:var(--glass-line) var(--glass)}
+body{margin:0;background:var(--glass);color:var(--on-glass);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
+::selection{background:var(--red);color:#fff}
+a{color:inherit;text-underline-offset:.2em}
+:focus-visible{outline:3px solid #ffd23f;outline-offset:3px;border-radius:4px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+
+/* ---------- vidro ---------- */
+.windshield{position:relative;overflow:hidden;isolation:isolate;
+  background:
+    linear-gradient(115deg,transparent 0 38%,rgba(255,255,255,.045) 38% 47%,transparent 47% 100%),
+    radial-gradient(120% 90% at 80% 0%,var(--glass-2),var(--glass) 70%);}
+.windshield::before{ /* frit: pontos que somem em direção ao centro */
+  content:"";position:absolute;inset:0 0 auto 0;height:120px;z-index:-1;
+  background:radial-gradient(circle,var(--frit) 46%,transparent 50%) 0 0/14px 14px;
+  -webkit-mask:linear-gradient(#000 0 22%,transparent 100%);mask:linear-gradient(#000 0 22%,transparent 100%)}
+.windshield::after{content:"";position:absolute;inset:0 0 auto 0;height:26px;background:var(--frit);z-index:-1}
+
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:44px 0 0}
+.brand{font:800 1.5rem/1 var(--display);letter-spacing:.02em;text-transform:uppercase;text-decoration:none}
+.brand span{color:#ff6b5c}
+.links{display:flex;gap:28px;font-weight:600;font-size:.95rem}
+.links a{text-decoration:none;color:var(--on-glass-2)}
+.links a:hover{color:var(--on-glass)}
+
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 22px;border-radius:999px;border:0;
+  background:var(--go);color:var(--go-ink);font:600 1rem/1 var(--body);text-decoration:none;cursor:pointer;
+  box-shadow:0 6px 16px -6px rgba(0,0,0,.5);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -8px rgba(0,0,0,.6)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.small{min-height:42px;padding:0 16px;font-size:.92rem}
+
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center;padding:56px 0 96px}
+.hero h1{font:800 clamp(3rem,7vw,5.6rem)/.9 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:0 0 22px;text-wrap:balance}
+.hero h1 em{font-style:normal;color:#ffd23f}
+.hero p.lead{font-size:1.2rem;color:var(--on-glass-2);max-width:34ch;margin:0 0 30px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:26px;color:var(--on-glass-2);font-size:.95rem}
+.hero .meta b{color:var(--on-glass);font-weight:600}
+
+/* ---------- o adesivo ---------- */
+.sticker{position:relative;background:var(--vinyl);color:var(--vinyl-ink);border-radius:18px;transform:rotate(-2.2deg);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 18px 40px -14px rgba(0,0,0,.65),0 2px 4px rgba(0,0,0,.3);
+  overflow:hidden;max-width:520px;justify-self:end;width:100%}
+.sticker::after{ /* cantinho levantado */
+  content:"";position:absolute;right:0;bottom:0;width:46px;height:46px;
+  background:linear-gradient(135deg,transparent 50%,#d9d8cf 50%,#fbfbf7 80%);border-top-left-radius:12px;
+  box-shadow:-3px -3px 6px rgba(0,0,0,.12)}
+.s-head{background:var(--red);color:#fff;padding:18px 24px 14px;display:flex;justify-content:space-between;align-items:end;gap:12px}
+.s-head strong{font:800 2rem/.9 var(--display);text-transform:uppercase;letter-spacing:.01em}
+.s-head small{font:600 .78rem/1.2 var(--body);text-align:right}
+.s-band{background:var(--blue);color:#fff;font:600 1.05rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;padding:9px 24px}
+.s-body{padding:18px 24px 26px}
+.row{display:grid;grid-template-columns:auto 1fr;align-items:end;gap:14px;padding:10px 0;border-bottom:1.5px solid var(--vinyl-rule)}
+.row label,.row .lab{font:600 .8rem/1.1 var(--body);text-transform:uppercase;letter-spacing:.08em;color:#55605c;white-space:nowrap}
+.ink{font:400 1.9rem/1 var(--hand);color:var(--marker);min-height:1.9rem;white-space:nowrap;
+  clip-path:inset(0 0 0 0);transition:clip-path .9s cubic-bezier(.3,.7,.2,1)}
+.ink.writing{clip-path:inset(0 100% 0 0);transition:none}
+.ink.empty{color:#767c74}
+.row input{all:unset;font:400 1.9rem/1 var(--hand);color:var(--marker);width:100%;min-width:0;caret-color:var(--red)}
+.row input::placeholder{color:#767c74}
+.row.you{background:linear-gradient(transparent 60%,#fff3a6 60%);margin:0 -8px;padding-inline:8px;border-radius:4px}
+.s-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-top:20px}
+.s-foot p{margin:0;font-size:.85rem;color:#55605c;max-width:24ch;line-height:1.35}
+
+/* ---------- seções ---------- */
+section{padding:96px 0;border-top:1px solid var(--glass-line)}
+h2{font:800 clamp(2.4rem,5vw,3.8rem)/.95 var(--display);text-transform:uppercase;margin:0 0 20px;text-wrap:balance}
+.intro{color:var(--on-glass-2);max-width:56ch;margin:0 0 44px;font-size:1.1rem}
+
+.board{list-style:none;margin:0;padding:0;columns:2;column-gap:64px}
+.board li{break-inside:avoid;display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:18px 0;border-bottom:1px dashed var(--glass-line)}
+.board b{font:600 1.35rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.board .t{font-style:normal;font-variant-numeric:tabular-nums;color:#ffd23f;font-weight:600;white-space:nowrap;align-self:start}
+.board span{grid-column:1/-1;color:var(--on-glass-2);font-size:.98rem}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:s;border:1.5px solid var(--glass-line);border-radius:16px;overflow:hidden}
+.steps div{padding:30px 28px 34px;counter-increment:s;position:relative}
+.steps div+div{border-left:1.5px solid var(--glass-line)}
+.steps div::before{content:counter(s);font:800 3.4rem/1 var(--display);color:#ff6b5c;display:block;margin-bottom:14px}
+.steps h3{font:600 1.5rem/1.1 var(--display);text-transform:uppercase;margin:0 0 8px}
+.steps p{margin:0;color:var(--on-glass-2)}
+
+.promises{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+.promises span{padding:10px 18px;border-radius:999px;background:var(--glass-2);border:1px solid var(--glass-line);font-weight:600;font-size:.95rem}
+
+.visit{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.addr{font:600 1.7rem/1.2 var(--display);text-transform:uppercase;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+td{padding:12px 0;border-bottom:1px solid var(--glass-line)}
+td+td{text-align:right;color:var(--on-glass-2)}
+tr.today td{color:#ffd23f}
+.cta-sticker{transform:rotate(1.6deg);max-width:440px;justify-self:end}
+.cta-sticker .s-body p{margin:0 0 18px;font-size:1.02rem}
+
+footer{padding:40px 0 56px;border-top:1px solid var(--glass-line);color:var(--on-glass-2);font-size:.9rem;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+.demo-tag{display:inline-block;padding:4px 10px;border:1px dashed var(--on-glass-2);border-radius:6px;font-size:.8rem;letter-spacing:.04em}
+
+.float{position:fixed;right:16px;bottom:16px;z-index:10;display:none}
+
+@media (max-width:860px){
+  .links{display:none}
+  .hero{grid-template-columns:1fr;gap:44px;padding:36px 0 72px}
+  .sticker{justify-self:stretch;max-width:none;transform:rotate(-1.2deg)}
+  .board{columns:1}
+  .steps{grid-template-columns:1fr}
+  .steps div+div{border-left:0;border-top:1.5px solid var(--glass-line)}
+  .visit{grid-template-columns:1fr}
+  .cta-sticker{justify-self:stretch;max-width:none}
+  section{padding:72px 0}
+  .float{display:inline-flex}
+  nav .btn{display:none}
+}
+@media (max-width:420px){
+  .s-head strong{font-size:1.6rem}
+  .ink,.row input{font-size:1.55rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- tour 3D ---------- */
+section.tour{padding:0;border-top:0;height:calc(6 * 85svh + 100svh);position:relative}
+.palco{position:sticky;top:0;height:100svh;overflow:hidden;background:#0f1a18}
+#tour-canvas{display:block;width:100%;height:100%;touch-action:pan-y;cursor:grab;opacity:0;transition:opacity .8s}
+#tour-canvas:active{cursor:grabbing}
+.tour.pronto #tour-canvas{opacity:1}
+.tour-titulo{position:absolute;top:28px;left:0;right:0;pointer-events:none}
+.tour-titulo h2{margin:0;font-size:clamp(1.6rem,3vw,2.4rem);text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.paradas{position:absolute;left:0;right:0;bottom:32px;pointer-events:none}
+.parada{position:absolute;left:0;bottom:0;width:min(400px,100%);background:var(--vinyl);color:var(--vinyl-ink);border-radius:14px;overflow:hidden;
+  box-shadow:0 18px 40px -14px rgba(0,0,0,.7);opacity:0;transform:translateY(16px) rotate(-1deg);
+  transition:opacity .45s cubic-bezier(.2,.8,.2,1),transform .45s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.parada.ativa{opacity:1;transform:translateY(0) rotate(-1deg);pointer-events:auto}
+.parada header{background:var(--red);color:#fff;display:flex;justify-content:space-between;align-items:baseline;padding:12px 18px 9px}
+.parada header b{font:800 1.5rem/1 var(--display);text-transform:uppercase;letter-spacing:.01em}
+.parada header span{font:600 .85rem/1 var(--display);letter-spacing:.12em;font-variant-numeric:tabular-nums}
+.parada p{margin:0;padding:14px 18px 16px;font-size:1rem;line-height:1.5}
+.parada .btn{margin:0 18px 18px}
+.parada.p0 header{background:var(--blue)}
+.dica{position:absolute;right:16px;top:32px;margin:0;display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--on-glass-2);pointer-events:none}
+.dica svg{width:18px;height:18px}
+#tour-pinos{position:absolute;left:0;top:0;width:0;height:0;pointer-events:none;opacity:0;transition:opacity .3s}
+#tour-pinos.on{opacity:1}
+#tour-pinos::before{content:"";position:absolute;left:-11px;top:-11px;width:22px;height:22px;border-radius:50%;background:#ffd23f;box-shadow:0 0 0 4px rgba(255,210,63,.35),0 2px 8px rgba(0,0,0,.6)}
+#tour-pinos::after{content:"";position:absolute;left:-23px;top:-23px;width:46px;height:46px;border-radius:50%;border:2px solid #ffd23f;animation:pulso 1.8s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes pulso{from{transform:scale(.5);opacity:1}to{transform:scale(1.4);opacity:0}}
+.sem3d-msg{display:none}
+.tour.sem-3d #tour-canvas,.tour.sem-3d #tour-pinos{display:none}
+.tour.sem-3d .sem3d-msg{display:block;position:absolute;inset:40% 16px auto;text-align:center;color:var(--on-glass-2)}
+@media (max-width:860px){
+  .paradas{bottom:88px}
+  .parada{width:100%}
+  .dica{top:auto;bottom:18px;left:16px;right:auto}
+  .tour-titulo{top:20px}
+}
+@media (prefers-reduced-motion:reduce){#tour-pinos::after{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="windshield">
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#">Serra <span>Azul</span></a>
+      <div class="links"><a href="#servicos">Serviços</a><a href="#como">Como funciona</a><a href="#onde">Onde estamos</a></div>
+      <a class="btn small" data-wa="Olá! Vim pelo site e quero um orçamento." href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>WhatsApp</a>
+    </nav>
+
+    <div class="hero">
+      <div>
+        <h1>Mecânica que <em>explica</em> antes de mexer.</h1>
+        <p class="lead">Freio, suspensão, motor e revisão. Você recebe o orçamento por escrito no WhatsApp e só autoriza o que quiser.</p>
+        <a class="btn" data-wa="Olá! Vim pelo site e quero um orçamento." href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>Pedir orçamento no WhatsApp</a>
+        <div class="meta"><span><b>Seg a sex</b> 7h30–18h</span><span><b>Sáb</b> 8h–12h</span><span><b>Vila Esperança</b></span></div>
+      </div>
+
+      <form class="sticker" id="oleo" autocomplete="off" aria-labelledby="st-t">
+        <div class="s-head"><strong id="st-t">Serra Azul</strong><small>Auto Mecânica<br>desde 1998</small></div>
+        <div class="s-band">Próxima troca de óleo</div>
+        <div class="s-body">
+          <div class="row you"><label for="km">Km de hoje</label><input id="km" inputmode="numeric" placeholder="digite aqui" maxlength="7" aria-describedby="st-help"></div>
+          <div class="row"><span class="lab">Trocar com</span><span class="ink empty" id="nkm">— km</span></div>
+          <div class="row"><span class="lab">Ou até</span><span class="ink empty" id="ndt">—/—/—</span></div>
+          <div class="row"><span class="lab">Óleo</span><span class="ink">5W30 sintético</span></div>
+          <div class="s-foot">
+            <p id="st-help">Digite a quilometragem e veja quando vence a próxima troca.</p>
+            <a class="btn small" id="agendar" data-wa="Olá! Quero agendar a troca de óleo." href="#">Agendar troca</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="tour" class="tour" aria-label="Visita em 3D pela oficina">
+    <div class="palco">
+      <canvas id="tour-canvas" aria-label="Oficina em 3D. Role a página para andar pelos setores e arraste para olhar em volta."></canvas>
+      <div id="tour-pinos" aria-hidden="true"></div>
+      <div class="tour-titulo"><div class="wrap"><h2>Por dentro da oficina</h2></div></div>
+      <p class="dica"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 13V5a2 2 0 1 1 4 0v6m0-1a2 2 0 1 1 4 0v2m0-1a2 2 0 1 1 4 0v4a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L4 15a2 2 0 0 1 3-2.5l1 1.5"/></svg>Arraste para olhar em volta</p>
+      <div class="paradas wrap">
+        <article class="parada p0 ativa"><header><b>Bem-vindo</b><span>Role para entrar</span></header><p>Dois boxes, elevador, rampa de alinhamento e scanner. Role a página para passar por cada setor.</p></article>
+        <article class="parada"><header><b>Elevador</b><span>1 / 5</span></header><p>Freio, suspensão e escapamento. Com o carro no alto, a gente te mostra a peça gasta antes de trocar.</p></article>
+        <article class="parada"><header><b>Bancada</b><span>2 / 5</span></header><p>A peça que saiu do seu carro fica separada, com etiqueta, e volta com você no porta-malas.</p></article>
+        <article class="parada"><header><b>Scanner</b><span>3 / 5</span></header><p>Luz acesa no painel? O scanner lê o código da injeção e a gente explica o que ele quer dizer.</p></article>
+        <article class="parada"><header><b>Alinhamento</b><span>4 / 5</span></header><p>Rampa com cabeçotes de medição e relatório impresso antes e depois.</p></article>
+        <article class="parada"><header><b>Balcão</b><span>5 / 5</span></header><p>Orçamento por escrito, peça e mão de obra separadas. Nada é feito sem o seu ok.</p><a class="btn small" data-wa="Olá! Vi a oficina no site e quero um orçamento." href="#">Pedir orçamento</a></article>
+      </div>
+      <p class="sem3d-msg">Este aparelho não conseguiu abrir a visita em 3D.</p>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="wrap">
+      <h2>O que a gente faz</h2>
+      <p class="intro">Carro de passeio e utilitário leve, nacional e importado. O tempo é a média com a peça em estoque.</p>
+      <ul class="board">
+        <li><b>Troca de óleo e filtro</b><i class="t">40 min</i><span>Óleo na especificação do manual, filtro novo e etiqueta no vidro.</span></li>
+        <li><b>Freios</b><i class="t">2 h</i><span>Pastilha, disco, fluido e regulagem. A peça velha volta com você.</span></li>
+        <li><b>Suspensão</b><i class="t">3 h</i><span>Amortecedor, bandeja, bieleta e barulho que ninguém achava.</span></li>
+        <li><b>Embreagem</b><i class="t">1 dia</i><span>Kit completo, com teste de rodagem antes da entrega.</span></li>
+        <li><b>Correia dentada</b><i class="t">4 h</i><span>Correia, tensor e bomba d'água quando estiver no prazo.</span></li>
+        <li><b>Diagnóstico com scanner</b><i class="t">30 min</i><span>Luz acesa no painel? A gente lê o código e explica o que é.</span></li>
+        <li><b>Alinhamento e balanceamento</b><i class="t">1 h</i><span>Com relatório antes e depois.</span></li>
+        <li><b>Revisão preventiva</b><i class="t">3 h</i><span>Checklist de 40 itens para viagem ou venda do carro.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="como">
+    <div class="wrap">
+      <h2>Do áudio ao carro pronto</h2>
+      <p class="intro">Sem surpresa na hora de pagar.</p>
+      <div class="steps">
+        <div><h3>Você conta o problema</h3><p>Manda um áudio ou foto no WhatsApp: barulho, luz no painel, revisão.</p></div>
+        <div><h3>Orçamento por escrito</h3><p>Peça e mão de obra separadas, com prazo. Nada é feito sem o seu ok.</p></div>
+        <div><h3>Carro de volta</h3><p>Avisamos quando estiver pronto e entregamos as peças trocadas.</p></div>
+      </div>
+      <div class="promises"><span>Garantia de 90 dias na mão de obra</span><span>Pix, débito e crédito em até 3x</span><span>Peça velha devolvida</span></div>
+    </div>
+  </section>
+
+  <section id="onde">
+    <div class="wrap visit">
+      <div>
+        <h2>Onde estamos</h2>
+        <p class="addr">Rua das Acácias, 410<br>Vila Esperança</p>
+        <table aria-label="Horário de atendimento" id="horario">
+          <tr data-d="1 2 3 4 5"><td>Segunda a sexta</td><td>7h30 – 18h</td></tr>
+          <tr data-d="6"><td>Sábado</td><td>8h – 12h</td></tr>
+          <tr data-d="0"><td>Domingo</td><td>Fechado</td></tr>
+        </table>
+      </div>
+      <div class="sticker cta-sticker">
+        <div class="s-head"><strong>Ficou com dúvida?</strong></div>
+        <div class="s-band">Resposta em horário comercial</div>
+        <div class="s-body">
+          <p>Mande a placa, o modelo e o que está acontecendo. Se der para resolver sem trazer o carro, a gente fala.</p>
+          <a class="btn" data-wa="Olá! Tenho uma dúvida sobre o meu carro." href="#">Chamar no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>Auto Mecânica Serra Azul · Rua das Acácias, 410</span>
+  <span class="demo-tag">Site de demonstração: empresa, endereço e dados fictícios · <a href="../">ver outros modelos</a></span>
+</footer>
+
+<a class="btn float" data-wa="Olá! Vim pelo site e quero um orçamento." href="#" aria-label="Chamar no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>WhatsApp</a>
+
+<script>
+// Número do cliente: troque aqui (formato 55DDDNUMERO). Vazio abre o WhatsApp para escolher o contato.
+const WHATSAPP = "";
+const wa = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+document.querySelectorAll("[data-wa]").forEach(a => { a.href = wa(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
+
+const km = document.getElementById("km"), nkm = document.getElementById("nkm"), ndt = document.getElementById("ndt"), ag = document.getElementById("agendar");
+const fmt = n => n.toLocaleString("pt-BR");
+let t;
+function escrever(el, txt){
+  if (el.textContent === txt) return;
+  el.classList.add("writing"); el.textContent = txt; el.classList.remove("empty");
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("writing")));
+}
+km.addEventListener("input", () => {
+  const v = parseInt(km.value.replace(/\D/g, ""), 10);
+  km.value = isNaN(v) ? "" : fmt(v);
+  clearTimeout(t);
+  if (isNaN(v)) { nkm.textContent = "— km"; ndt.textContent = "—/—/—"; nkm.classList.add("empty"); ndt.classList.add("empty"); ag.href = wa(ag.dataset.wa); return; }
+  t = setTimeout(() => {
+    const d = new Date(); d.setMonth(d.getMonth() + 6);
+    const data = d.toLocaleDateString("pt-BR", {day:"2-digit", month:"2-digit", year:"2-digit"});
+    escrever(nkm, fmt(Math.ceil((v + 10000) / 500) * 500) + " km");
+    escrever(ndt, data);
+    ag.href = wa(`Olá! Quero agendar a troca de óleo. Meu carro está com ${fmt(v)} km.`);
+  }, 350);
+});
+document.getElementById("oleo").addEventListener("submit", e => e.preventDefault());
+
+const hoje = new Date().getDay();
+document.querySelectorAll("#horario tr").forEach(tr => { if (tr.dataset.d.split(" ").includes(String(hoje))) tr.classList.add("today"); });
+</script>
+<script type="module" src="garagem.js"></script>
+</body>
+</html>
