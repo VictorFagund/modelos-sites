@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Torrão Cerâmica · Peças feitas à mão</title>
+<meta name="description" content="Canecas, tigelas, pratos e vasos feitos à mão, uma de cada. Pedido pelo WhatsApp com Pix. Site de demonstração.">
+<style>
+@font-face{font-family:"Bricolage";src:url(../fonts/bricolage-grotesque-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Bricolage";src:url(../fonts/bricolage-grotesque-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Bricolage";src:url(../fonts/bricolage-grotesque-800.woff2) format("woff2");font-weight:800;font-display:swap}
+@font-face{font-family:"Hanken";src:url(../fonts/hanken-grotesk-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Hanken";src:url(../fonts/hanken-grotesk-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Hanken";src:url(../fonts/hanken-grotesk-600.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --concreto:#d6d5d0;       /* mesmo cinza do fundo das fotos */
+  --concreto-2:#cbcac4;
+  --concreto-3:#e3e2dd;
+  --tinta:#1b1d1c;
+  --tinta-2:#55585a;
+  --linha:#b4b3ad;
+  --cobalto:#2443b0;        /* esmalte azul */
+  --cobalto-2:#1a3290;
+  --forno:#c8582c;          /* cor de queima, só para destaque pequeno */
+  --branco:#f4f3ef;
+  --display:"Bricolage","Hanken",system-ui,sans-serif;
+  --texto:"Hanken",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scrollbar-color:var(--linha) var(--concreto)}
+body{margin:0;background:var(--concreto);color:var(--tinta);font:400 1.0625rem/1.6 var(--texto);-webkit-font-smoothing:antialiased}
+body.travado{overflow:hidden}
+::selection{background:var(--cobalto);color:#fff}
+a{color:inherit;text-underline-offset:.22em}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--cobalto);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1280px,100% - 32px);margin-inline:auto}
+.preco{font-variant-numeric:tabular-nums}
+
+/* ---------- faixa que corre ---------- */
+.faixa{background:var(--tinta);color:var(--concreto-3);font-size:.85rem;font-weight:500;overflow:hidden;white-space:nowrap}
+.faixa .trilho{display:inline-flex;gap:48px;padding:9px 0;animation:corre 38s linear infinite}
+.faixa span{display:inline-flex;align-items:center;gap:48px}
+.faixa span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--forno)}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* ---------- topo ---------- */
+.topo{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--concreto) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+.topo.rolou{border-color:var(--linha)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.marca{font:800 1.45rem/1 var(--display);letter-spacing:-.03em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.marca i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#4e6bd1,var(--cobalto-2) 70%);box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.menu{display:flex;gap:30px;font-weight:500}
+.menu a{text-decoration:none;color:var(--tinta-2);transition:color .2s}
+.menu a:hover{color:var(--tinta)}
+.sacola-btn{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 16px;border-radius:999px;background:var(--tinta);color:var(--branco);font-weight:600;font-size:.95rem}
+.sacola-btn svg{width:19px;height:19px}
+.sacola-btn b{min-width:22px;height:22px;border-radius:11px;background:var(--branco);color:var(--tinta);display:inline-grid;place-items:center;font-size:.8rem;font-variant-numeric:tabular-nums;transition:transform .35s var(--ease)}
+.sacola-btn b.pulo{transform:scale(1.35)}
+
+/* ---------- abertura ---------- */
+.abertura{padding:44px 0 0;overflow:hidden}
+.abertura h1{font:800 clamp(3.2rem,7.6vw,7.2rem)/.86 var(--display);letter-spacing:-.045em;margin:0;text-wrap:balance}
+.abertura h1 .azul{color:var(--cobalto)}
+.abertura .sob{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin:26px 0 34px}
+.abertura .sob p{margin:0;max-width:40ch;font-size:1.15rem;color:var(--tinta-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;border:0;background:var(--cobalto);color:#fff;font:600 1rem/1 var(--texto);text-decoration:none;cursor:pointer;transition:background .25s,transform .25s var(--ease)}
+.btn:hover{background:var(--cobalto-2);transform:translateY(-2px)}
+.btn.claro{background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 1.5px var(--tinta)}
+.btn.claro:hover{background:var(--tinta);color:var(--branco)}
+.btn svg{width:20px;height:20px}
+
+/* carrossel que anda sozinho */
+.esteira{position:relative;overflow:hidden;padding:6px 0 72px;mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.esteira .trilho{display:flex;gap:18px;width:max-content;animation:corre 60s linear infinite}
+.esteira:hover .trilho,.esteira:focus-within .trilho{animation-play-state:paused}
+.peca{all:unset;cursor:pointer;position:relative;width:clamp(200px,22vw,300px);flex:none;border-radius:20px;overflow:hidden;background:var(--concreto-2)}
+.peca img{aspect-ratio:4/5;width:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.peca:hover img{transform:scale(1.05)}
+.peca .etq{position:absolute;left:12px;right:12px;bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px 10px 16px;border-radius:14px;background:color-mix(in srgb,var(--branco) 86%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-weight:600;font-size:.92rem;transform:translateY(0);transition:transform .4s var(--ease)}
+.peca .etq small{display:block;font-weight:500;color:var(--tinta-2);font-size:.82rem}
+
+/* ---------- loja ---------- */
+section{padding:110px 0}
+.titulo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px 40px;margin-bottom:40px}
+h2{font:800 clamp(2.4rem,5vw,4.4rem)/.92 var(--display);letter-spacing:-.04em;margin:0;text-wrap:balance}
+.titulo p{margin:0;max-width:44ch;color:var(--tinta-2)}
+
+/* filtro por esmalte: plaquinhas de teste */
+.esmaltes{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+.esmalte{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:999px;background:var(--concreto-3);font-weight:500;font-size:.95rem;transition:background .25s,color .25s}
+.esmalte i{width:26px;height:26px;border-radius:50%;background:var(--g);box-shadow:inset 0 -3px 0 rgba(0,0,0,.14),inset 0 2px 2px rgba(255,255,255,.35)}
+.esmalte[aria-pressed="true"]{background:var(--tinta);color:var(--branco)}
+.esmalte .n{font-variant-numeric:tabular-nums;color:var(--tinta-2);font-size:.85rem}
+.esmalte[aria-pressed="true"] .n{color:#b9bab5}
+
+.grade{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 22px}
+.produto{position:relative}
+.midia{position:relative}
+.produto[hidden]{display:none}
+.produto .foto{all:unset;cursor:pointer;display:block;position:relative;border-radius:18px;overflow:hidden;background:var(--concreto-2)}
+.produto img{aspect-ratio:4/5;width:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.produto:hover img{transform:scale(1.04)}
+.produto .add{position:absolute;right:12px;bottom:12px;width:46px;height:46px;border-radius:50%;border:0;background:var(--branco);display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 16px -6px rgba(0,0,0,.35);transition:transform .3s var(--ease),background .25s}
+.produto .add:hover{transform:scale(1.08);background:var(--cobalto);color:#fff}
+.produto .add svg{width:20px;height:20px}
+.produto .info{display:flex;justify-content:space-between;gap:12px;margin-top:14px}
+.produto h3{font:700 1.1rem/1.2 var(--display);letter-spacing:-.01em;margin:0}
+.produto .desc{color:var(--tinta-2);font-size:.9rem;margin:2px 0 0}
+.produto .preco{font-weight:600;white-space:nowrap}
+.produto .unica{position:absolute;left:12px;top:12px;padding:5px 10px;border-radius:999px;background:var(--branco);font-size:.75rem;font-weight:600;letter-spacing:.02em}
+.vazio{grid-column:1/-1;color:var(--tinta-2)}
+
+/* ---------- processo: rola na horizontal ---------- */
+.processo{padding:0;height:360vh;position:relative;background:var(--tinta);color:var(--branco)}
+.processo .palco{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:34px}
+.processo h2{color:var(--branco)}
+.processo .cab{display:flex;justify-content:space-between;align-items:end;gap:20px}
+.processo .barra{width:min(280px,40vw);height:4px;border-radius:2px;background:rgba(255,255,255,.15);overflow:hidden}
+.processo .barra i{display:block;height:100%;width:100%;background:var(--forno);transform-origin:left;transform:scaleX(var(--p,0))}
+.processo .fita{display:flex;gap:24px;padding-left:max(16px,calc((100vw - 1280px)/2));will-change:transform}
+.etapa{flex:none;width:min(560px,78vw);display:grid;grid-template-rows:auto auto;gap:18px}
+.etapa figure{margin:0;border-radius:22px;overflow:hidden;aspect-ratio:16/11;background:#2a2c2b}
+.etapa img{width:100%;height:100%;object-fit:cover}
+.etapa .t{display:flex;gap:18px;align-items:baseline}
+.etapa .t b{font:800 1rem/1 var(--display);color:#e8875e;font-variant-numeric:tabular-nums}
+.etapa h3{font:700 1.6rem/1.1 var(--display);letter-spacing:-.02em;margin:0 0 6px}
+.etapa p{margin:0;color:#b9bbb7;max-width:46ch}
+
+/* ---------- ateliê ---------- */
+.atelie{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:center}
+.atelie figure{margin:0;border-radius:24px;overflow:hidden}
+.atelie img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.atelie blockquote{margin:0 0 28px;font:700 clamp(1.6rem,2.8vw,2.4rem)/1.15 var(--display);letter-spacing:-.025em;text-wrap:balance}
+.atelie blockquote::before{content:"“";color:var(--cobalto)}
+.atelie p{color:var(--tinta-2);max-width:52ch}
+.fatos{display:flex;flex-wrap:wrap;gap:36px;margin-top:30px}
+.fatos div b{display:block;font:800 2.4rem/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.fatos div span{color:var(--tinta-2);font-size:.95rem}
+
+/* ---------- avaliações que correm ---------- */
+.vozes{padding:90px 0;overflow:hidden;background:var(--concreto-3)}
+.vozes h2{margin-bottom:36px}
+.vozes .trilho{display:flex;gap:18px;width:max-content;animation:corre 70s linear infinite reverse}
+.vozes:hover .trilho{animation-play-state:paused}
+.voz{width:340px;flex:none;background:var(--branco);border-radius:18px;padding:22px 22px 20px}
+.voz p{margin:0 0 16px;font-size:1rem}
+.voz footer{display:flex;justify-content:space-between;color:var(--tinta-2);font-size:.88rem}
+.estrelas{color:var(--forno);letter-spacing:2px}
+
+/* ---------- entrega ---------- */
+.entrega{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.entrega div{padding:28px 26px;border-radius:20px;background:var(--concreto-3)}
+.entrega svg{width:30px;height:30px;color:var(--cobalto);margin-bottom:18px}
+.entrega h3{font:700 1.25rem/1.15 var(--display);margin:0 0 6px}
+.entrega p{margin:0;color:var(--tinta-2)}
+
+footer.rodape{padding:44px 0 60px;border-top:1px solid var(--linha);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;color:var(--tinta-2);font-size:.9rem}
+.demo{padding:4px 10px;border:1px dashed var(--tinta-2);border-radius:6px;font-size:.8rem}
+
+/* ---------- sacola (gaveta) ---------- */
+.veu{position:fixed;inset:0;z-index:40;background:rgba(20,22,21,.42);opacity:0;pointer-events:none;transition:opacity .35s}
+.veu.on{opacity:1;pointer-events:auto}
+.gaveta{position:fixed;z-index:41;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--branco);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .45s var(--ease);box-shadow:-20px 0 60px -30px rgba(0,0,0,.4)}
+.gaveta.on{transform:none}
+.gaveta header{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--concreto-2)}
+.gaveta header h2{font-size:1.6rem}
+.fechar{all:unset;cursor:pointer;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--concreto-3)}
+.fechar svg{width:18px;height:18px}
+.frete{padding:16px 24px;border-bottom:1px solid var(--concreto-2);font-size:.92rem}
+.frete .barra{height:6px;border-radius:3px;background:var(--concreto-2);margin-top:10px;overflow:hidden}
+.frete .barra i{display:block;height:100%;background:var(--cobalto);width:0;transition:width .5s var(--ease)}
+.itens{flex:1;overflow:auto;padding:8px 24px}
+.item{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--concreto-3)}
+.item img{width:72px;height:88px;object-fit:cover;border-radius:10px}
+.item h4{margin:0;font:700 1rem/1.2 var(--display)}
+.item .q{display:inline-flex;align-items:center;margin-top:8px;border-radius:999px;background:var(--concreto-3)}
+.item .q button{all:unset;cursor:pointer;width:30px;height:30px;display:grid;place-items:center;font-weight:600}
+.item .q span{min-width:20px;text-align:center;font-variant-numeric:tabular-nums;font-size:.95rem}
+.item .preco{font-weight:600}
+.sacola-vazia{padding:40px 0;color:var(--tinta-2);text-align:center}
+.fecho{padding:20px 24px 24px;border-top:1px solid var(--concreto-2);display:grid;gap:14px}
+.fecho .total{display:flex;justify-content:space-between;font:700 1.25rem/1 var(--display)}
+.fecho small{color:var(--tinta-2)}
+.fecho .btn{width:100%}
+.fecho .btn[aria-disabled="true"]{opacity:.4;pointer-events:none}
+
+/* ---------- vista rápida ---------- */
+.vista{position:fixed;z-index:42;inset:50% auto auto 50%;width:min(880px,calc(100% - 32px));max-height:calc(100% - 32px);overflow:auto;transform:translate(-50%,-46%) scale(.98);opacity:0;pointer-events:none;background:var(--branco);border-radius:24px;display:grid;grid-template-columns:1fr 1fr;transition:opacity .3s,transform .4s var(--ease)}
+.vista.on{opacity:1;transform:translate(-50%,-50%);pointer-events:auto}
+.vista img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.vista .corpo{padding:34px 32px;display:flex;flex-direction:column;gap:14px}
+.vista h3{font:800 2rem/1 var(--display);letter-spacing:-.03em;margin:0}
+.vista .preco{font-size:1.3rem;font-weight:600}
+.vista dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:6px 0 10px;font-size:.95rem}
+.vista dt{color:var(--tinta-2)}
+.vista dd{margin:0}
+.vista .fechar{position:absolute;right:14px;top:14px}
+
+.toast{position:fixed;z-index:50;left:50%;bottom:24px;transform:translate(-50%,160%);opacity:0;visibility:hidden;background:var(--tinta);color:var(--branco);padding:12px 18px;border-radius:999px;font-weight:500;font-size:.95rem;transition:transform .45s var(--ease),opacity .3s,visibility .3s;display:flex;gap:10px;align-items:center}
+.toast.on{transform:translate(-50%,0);opacity:1;visibility:visible}
+.toast img{width:28px;height:28px;border-radius:50%;object-fit:cover}
+
+/* revelar ao rolar */
+@supports (animation-timeline:view()){
+  .sobe{animation:sobe linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+  @keyframes sobe{from{opacity:0;transform:translateY(36px)}}
+}
+
+@media (max-width:1000px){
+  .grade{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}
+  .atelie{grid-template-columns:1fr;gap:36px}
+  .entrega{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .menu{display:none}
+  section{padding:80px 0}
+  .abertura{padding-top:40px}
+  .vista{grid-template-columns:1fr}
+  .vista img{aspect-ratio:1}
+  .vista .corpo{padding:24px 22px 26px}
+  .processo{height:420vh}
+  .etapa{width:82vw}
+  .produto h3{font-size:1rem}
+  .produto .info{flex-direction:column;gap:4px}
+  .peca{width:62vw}
+  .peca .etq{flex-direction:column;align-items:flex-start;gap:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  .faixa .trilho,.esteira .trilho,.vozes .trilho{animation:none}
+  .esteira{overflow-x:auto}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="faixa" aria-hidden="true"><div class="trilho">
+  <span>Frete grátis acima de R$ 250</span><span>Cada peça sai diferente: o esmalte escorre do jeito dele</span><span>Pix com 5% de desconto</span><span>Embalagem que aguenta transportadora</span>
+  <span>Frete grátis acima de R$ 250</span><span>Cada peça sai diferente: o esmalte escorre do jeito dele</span><span>Pix com 5% de desconto</span><span>Embalagem que aguenta transportadora</span>
+</div></div>
+
+<header class="topo" id="topo">
+  <div class="wrap">
+    <a class="marca" href="#"><i aria-hidden="true"></i>torrão</a>
+    <nav class="menu"><a href="#loja">Loja</a><a href="#processo">Como fazemos</a><a href="#atelie">Ateliê</a><a href="#entrega">Entrega</a></nav>
+    <button class="sacola-btn" id="abrir-sacola" aria-label="Abrir sacola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Sacola <b id="contagem">0</b></button>
+  </div>
+</header>
+
+<main>
+  <section class="abertura" aria-label="Destaques">
+    <div class="wrap">
+      <h1>Feito à mão.<br><span class="azul">Uma de cada.</span></h1>
+      <div class="sob">
+        <p>Canecas, tigelas, pratos e vasos torneados e queimados no nosso ateliê. Você escolhe aqui e fecha o pedido no WhatsApp.</p>
+        <a class="btn" href="#loja">Ver a loja</a>
+      </div>
+    </div>
+    <div class="esteira" aria-label="Peças em destaque"><div class="trilho" id="esteira"></div></div>
+  </section>
+
+  <section id="loja" aria-labelledby="t-loja">
+    <div class="wrap">
+      <div class="titulo"><h2 id="t-loja">A loja</h2><p>Filtre pela cor do esmalte. Peça marcada como única não volta: quando sai, sai.</p></div>
+      <div class="esmaltes" role="group" aria-label="Filtrar por esmalte" id="esmaltes"></div>
+      <div class="grade" id="grade"></div>
+    </div>
+  </section>
+
+  <section class="processo" id="processo" aria-labelledby="t-proc">
+    <div class="palco">
+      <div class="wrap cab"><h2 id="t-proc">Do barro<br>à sua mesa</h2><div class="barra" aria-hidden="true"><i id="proc-barra"></i></div></div>
+      <div class="fita" id="fita">
+        <article class="etapa"><figure><img src="img/torno-maos.webp" alt="Mãos modelando uma peça de barro no torno" loading="lazy"></figure><div class="t"><b>01</b><div><h3>No torno</h3><p>Cada peça começa como uma bola de barro centrada à mão. Duas iguais não existem.</p></div></div></article>
+        <article class="etapa"><figure><img src="img/hero-torno.webp" alt="Peça sendo acabada no torno, com ferramentas ao redor" loading="lazy"></figure><div class="t"><b>02</b><div><h3>Acabamento</h3><p>Depois de um dia secando, a base é raspada e a alça é colada. É aqui que ela ganha leveza.</p></div></div></article>
+        <article class="etapa"><figure><img src="img/prateleira.webp" alt="Prateleiras do ateliê cheias de peças secando" loading="lazy"></figure><div class="t"><b>03</b><div><h3>Duas queimas</h3><p>A primeira a 950 °C, a segunda com esmalte a 1.240 °C. São quase três dias de forno.</p></div></div></article>
+        <article class="etapa"><figure><img src="img/mesa-pratos.webp" alt="Prato e tigelas prontos sobre uma toalha de linho" loading="lazy"></figure><div class="t"><b>04</b><div><h3>Na sua mesa</h3><p>Vai embalada em papel e colmeia de papelão. Pode ir no micro-ondas e na lava-louças.</p></div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="atelie" aria-labelledby="t-atelie">
+    <div class="wrap atelie">
+      <figure class="sobe"><img src="img/artesa.webp" alt="Ceramista sorrindo na bancada do ateliê" loading="lazy"></figure>
+      <div class="sobe">
+        <h2 id="t-atelie" style="margin-bottom:28px">O ateliê</h2>
+        <blockquote>Gosto quando o esmalte escorre um pouco fora do lugar. É o forno assinando junto.</blockquote>
+        <p>A Torrão é a Lívia e um forno a gás no quintal. Ela produz em pequenos lotes, uma vez por mês, e o que aparece na loja é o que saiu da última fornada.</p>
+        <div class="fatos"><div><b>1.240 °C</b><span>temperatura da segunda queima</span></div><div><b>~40</b><span>peças por fornada</span></div><div><b>1 mês</b><span>entre uma fornada e outra</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vozes" aria-labelledby="t-vozes">
+    <div class="wrap"><h2 id="t-vozes">Quem já recebeu</h2></div>
+    <div class="trilho" id="vozes"></div>
+  </section>
+
+  <section id="entrega" aria-labelledby="t-ent">
+    <div class="wrap">
+      <div class="titulo"><h2 id="t-ent">Como funciona o pedido</h2></div>
+      <div class="entrega">
+        <div class="sobe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><h3>Monte a sacola</h3><p>Escolha as peças aqui no site. A sacola fica guardada se você sair e voltar.</p></div>
+        <div class="sobe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/></svg><h3>Feche no WhatsApp</h3><p>A mensagem vai pronta, com as peças e o total. A gente confirma o frete para o seu CEP.</p></div>
+        <div class="sobe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg><h3>Pague e receba</h3><p>Pix com 5% de desconto ou cartão em até 3x. Enviamos em até 3 dias úteis.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape wrap">
+  <span>Torrão Cerâmica · peças feitas à mão</span>
+  <span class="demo">Site de demonstração: loja, preços, pessoas e avaliações fictícios. Fotos: Unsplash · <a href="../">ver outros modelos</a></span>
+</footer>
+
+<!-- sacola -->
+<div class="veu" id="veu"></div>
+<aside class="gaveta" id="gaveta" aria-label="Sacola" aria-hidden="true">
+  <header><h2>Sacola</h2><button class="fechar" data-fechar aria-label="Fechar sacola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></header>
+  <div class="frete" id="frete"></div>
+  <div class="itens" id="itens"></div>
+  <div class="fecho">
+    <div class="total"><span>Total</span><span class="preco" id="total">R$ 0,00</span></div>
+    <small id="pix">No Pix: R$ 0,00</small>
+    <a class="btn" id="finalizar" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>Fechar pedido no WhatsApp</a>
+  </div>
+</aside>
+
+<!-- vista rápida -->
+<div class="vista" id="vista" role="dialog" aria-modal="true" aria-labelledby="v-nome" aria-hidden="true">
+  <img id="v-img" alt="">
+  <div class="corpo">
+    <h3 id="v-nome"></h3>
+    <div class="preco" id="v-preco"></div>
+    <p id="v-desc" style="margin:0;color:var(--tinta-2)"></p>
+    <dl id="v-ficha"></dl>
+    <button class="btn" id="v-add">Pôr na sacola</button>
+  </div>
+  <button class="fechar" data-fechar aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// Número da loja: troque aqui (formato 55DDDNUMERO). Vazio abre o WhatsApp para escolher o contato.
+const WHATSAPP = "";
+const FRETE_GRATIS = 250;
+
+const ESMALTES = {
+  neve:{nome:"Neve", cor:"#efeee9"}, areia:{nome:"Areia", cor:"#cdb99b"}, respingo:{nome:"Respingo", cor:"radial-gradient(circle at 30% 35%,#3a63c9 0 14%,transparent 15%),radial-gradient(circle at 65% 60%,#3a63c9 0 10%,transparent 11%),#eeece4"},
+  rosa:{nome:"Rosa", cor:"#e9cfc6"}, mar:{nome:"Mar", cor:"#9fbcb2"}, folha:{nome:"Folha", cor:"#5c8a4a"},
+};
+const PRODUTOS = [
+  {id:"respingo", nome:"Copo Respingo", desc:"Esmalte azul salpicado", preco:89, esm:"respingo", img:"copo-respingo", unica:false, ml:"250 ml", med:"9 × 8 cm"},
+  {id:"rosa", nome:"Copo Aurora", desc:"Rosa claro com frisos", preco:89, esm:"rosa", img:"copo-rosa", unica:false, ml:"250 ml", med:"9 × 8 cm"},
+  {id:"gres", nome:"Copo Grês", desc:"Barro pintado, sem esmalte por fora", preco:79, esm:"areia", img:"copo-gres", unica:false, ml:"220 ml", med:"8 × 9 cm"},
+  {id:"confete", nome:"Copo Confete", desc:"Respingos de três cores", preco:95, esm:"respingo", img:"copo-confete", unica:true, ml:"250 ml", med:"9 × 8 cm"},
+  {id:"caneca", nome:"Caneca Manhã", desc:"Cinza neblina com alça larga", preco:129, esm:"neve", img:"caneca-cinza", unica:false, ml:"380 ml", med:"12 × 9 cm"},
+  {id:"tigela-neve", nome:"Par de Tigelas Neve", desc:"Duas tigelas que se encaixam", preco:159, esm:"neve", img:"tigela-neve", unica:false, ml:"450 ml cada", med:"14 × 7 cm"},
+  {id:"tigelas", nome:"Trio Servir", desc:"Uma grande e duas de molho", preco:219, esm:"neve", img:"tigelas-trio", unica:false, ml:"1,5 L + 2 × 150 ml", med:"22 × 12 cm"},
+  {id:"ramagem", nome:"Cachepô Ramagem", desc:"Folhas pintadas à mão, com pezinhos", preco:189, esm:"folha", img:"tigela-ramagem", unica:true, ml:"para vaso nº 15", med:"18 × 12 cm"},
+  {id:"prato", nome:"Prato Maré", desc:"Verde-água com borda crua", preco:139, esm:"mar", img:"prato-mar", unica:true, ml:"raso", med:"Ø 24 cm"},
+  {id:"lua", nome:"Vaso Lua", desc:"Forma vazada, fosco", preco:249, esm:"areia", img:"vaso-lua", unica:false, ml:"para flor seca", med:"22 × 24 cm"},
+  {id:"trio-vasos", nome:"Trio de Vasos Cru", desc:"Textura de barro aparente", preco:289, esm:"areia", img:"vasos-cru", unica:true, ml:"três tamanhos", med:"até 18 cm"},
+  {id:"par-vasos", nome:"Par Garrafinha", desc:"Bege e cinza, para um galho só", preco:169, esm:"areia", img:"vasos-par", unica:false, ml:"botão de flor", med:"10 e 12 cm"},
+];
+const VOZES = [
+  ["Chegou inteira, embrulhada que nem presente. A caneca é mais leve do que eu imaginava.", "Marina, Curitiba"],
+  ["Comprei o copo respingo para dar de presente e acabei pedindo outro para mim.", "Rafael, São Paulo"],
+  ["O cachepô ficou lindo na sala. Dá para ver que foi pintado à mão.", "Joana, Belo Horizonte"],
+  ["Respondem rápido no WhatsApp e mandaram foto da peça antes de enviar.", "Paula, Florianópolis"],
+  ["As tigelas vão no micro-ondas todo dia e continuam iguais.", "Tiago, Porto Alegre"],
+  ["Prato Maré é ainda mais bonito pessoalmente, a borda crua faz diferença.", "Helena, Recife"],
+];
+
+const brl = v => v.toLocaleString("pt-BR", {style:"currency", currency:"BRL"});
+const src = p => `img/${p.img}.webp`;
+const $ = id => document.getElementById(id);
+const porId = Object.fromEntries(PRODUTOS.map(p => [p.id, p]));
+
+// sacola guardada no navegador
+let sacola = {};
+try { sacola = JSON.parse(localStorage.getItem("torrao-sacola") || "{}"); } catch {}
+const guardar = () => { try { localStorage.setItem("torrao-sacola", JSON.stringify(sacola)); } catch {} };
+
+// ---------- esteira do topo (duplicada para girar sem emenda)
+const cartao = p => `<button class="peca" data-ver="${p.id}"><img src="${src(p)}" alt="${p.nome}" loading="lazy"><span class="etq"><span>${p.nome}<small>${p.desc}</small></span><span class="preco">${brl(p.preco)}</span></span></button>`;
+const destaque = PRODUTOS.slice(0, 9);
+$("esteira").innerHTML = destaque.map(cartao).join("") + destaque.map(cartao).join("").replaceAll('class="peca"', 'class="peca" tabindex="-1" aria-hidden="true"');
+
+// ---------- filtro e grade
+let filtro = "todos";
+function desenharFiltro(){
+  const cont = c => PRODUTOS.filter(p => c === "todos" || p.esm === c).length;
+  $("esmaltes").innerHTML = [["todos", {nome:"Todos", cor:"conic-gradient(#3a63c9,#cdb99b,#9fbcb2,#e9cfc6,#5c8a4a,#3a63c9)"}], ...Object.entries(ESMALTES)]
+    .filter(([c]) => cont(c))
+    .map(([c, e]) => `<button class="esmalte" data-esm="${c}" aria-pressed="${filtro === c}"><i style="--g:${e.cor}"></i>${e.nome} <span class="n">${cont(c)}</span></button>`).join("");
+}
+function desenharGrade(){
+  $("grade").innerHTML = PRODUTOS.map(p => `
+    <article class="produto sobe" ${filtro !== "todos" && p.esm !== filtro ? "hidden" : ""}>
+      <div class="midia"><button class="foto" data-ver="${p.id}" aria-label="Ver ${p.nome}"><img src="${src(p)}" alt="${p.nome}, ${p.desc.toLowerCase()}" loading="lazy">${p.unica ? '<span class="unica">Peça única</span>' : ""}</button>
+      <button class="add" data-add="${p.id}" aria-label="Pôr ${p.nome} na sacola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>
+      <div class="info"><div><h3>${p.nome}</h3><p class="desc">${p.desc}</p></div><span class="preco">${brl(p.preco)}</span></div>
+    </article>`).join("");
+}
+$("esmaltes").addEventListener("click", e => {
+  const b = e.target.closest(".esmalte"); if (!b) return;
+  filtro = b.dataset.esm; desenharFiltro();
+  const mudar = () => desenharGrade();
+  document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches ? document.startViewTransition(mudar) : mudar();
+});
+
+// ---------- avaliações
+const voz = ([t, q]) => `<article class="voz"><p>${t}</p><footer><span>${q}</span><span class="estrelas" aria-label="5 estrelas">★★★★★</span></footer></article>`;
+$("vozes").innerHTML = VOZES.map(voz).join("") + VOZES.map(voz).join("");
+
+// ---------- sacola
+const qtd = () => Object.values(sacola).reduce((a, b) => a + b, 0);
+const total = () => Object.entries(sacola).reduce((a, [id, n]) => a + (porId[id]?.preco || 0) * n, 0);
+function desenharSacola(){
+  const c = $("contagem"); c.textContent = qtd(); c.classList.add("pulo"); setTimeout(() => c.classList.remove("pulo"), 300);
+  const t = total();
+  const falta = FRETE_GRATIS - t;
+  $("frete").innerHTML = (falta > 0 ? `Faltam <b class="preco">${brl(falta)}</b> para o frete grátis` : `<b>Frete grátis</b> garantido neste pedido`) + `<div class="barra"><i style="width:${Math.min(100, t / FRETE_GRATIS * 100)}%"></i></div>`;
+  const ids = Object.keys(sacola).filter(id => porId[id]);
+  $("itens").innerHTML = ids.length ? ids.map(id => { const p = porId[id]; return `
+    <div class="item"><img src="${src(p)}" alt=""><div><h4>${p.nome}</h4><div class="q"><button data-menos="${id}" aria-label="Tirar um">−</button><span>${sacola[id]}</span><button data-mais="${id}" aria-label="Pôr mais um">+</button></div></div><span class="preco">${brl(p.preco * sacola[id])}</span></div>`; }).join("")
+    : `<p class="sacola-vazia">Sua sacola está vazia.<br>As peças da loja aparecem aqui.</p>`;
+  $("total").textContent = brl(t);
+  $("pix").textContent = `No Pix: ${brl(t * .95)} (5% de desconto)`;
+  const f = $("finalizar");
+  if (ids.length) {
+    const linhas = ids.map(id => `• ${sacola[id]}x ${porId[id].nome} (${brl(porId[id].preco * sacola[id])})`).join("\n");
+    f.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Olá! Quero fazer este pedido:\n${linhas}\nTotal: ${brl(t)}\n\nMeu CEP é: `)}`;
+    f.target = "_blank"; f.rel = "noopener"; f.setAttribute("aria-disabled", "false");
+  } else { f.removeAttribute("href"); f.setAttribute("aria-disabled", "true"); }
+}
+function adicionar(id){
+  const p = porId[id];
+  if (p.unica && sacola[id]) { aviso(p, "Essa é peça única: só tem uma"); return; }
+  sacola[id] = (sacola[id] || 0) + 1; guardar(); desenharSacola(); aviso(p, `${p.nome} na sacola`);
+}
+let tt;
+function aviso(p, txt){ const t = $("toast"); t.innerHTML = `<img src="${src(p)}" alt="">${txt}`; t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 2200); }
+$("itens").addEventListener("click", e => {
+  const m = e.target.closest("[data-mais]"), n = e.target.closest("[data-menos]");
+  if (m) { const p = porId[m.dataset.mais]; if (p.unica) { aviso(p, "Essa é peça única: só tem uma"); return; } sacola[m.dataset.mais]++; }
+  if (n) { if (--sacola[n.dataset.menos] <= 0) delete sacola[n.dataset.menos]; }
+  if (m || n) { guardar(); desenharSacola(); }
+});
+
+// ---------- gaveta e vista rápida
+let aberto = null, voltar = null;
+function abrir(el){ voltar = document.activeElement; aberto = el; el.classList.add("on"); el.setAttribute("aria-hidden", "false"); $("veu").classList.add("on"); document.body.classList.add("travado"); el.querySelector("[data-fechar]").focus(); }
+function fechar(){ if (!aberto) return; aberto.classList.remove("on"); aberto.setAttribute("aria-hidden", "true"); $("veu").classList.remove("on"); document.body.classList.remove("travado"); aberto = null; voltar?.focus(); }
+$("abrir-sacola").addEventListener("click", () => abrir($("gaveta")));
+$("veu").addEventListener("click", fechar);
+document.querySelectorAll("[data-fechar]").forEach(b => b.addEventListener("click", fechar));
+addEventListener("keydown", e => { if (e.key === "Escape") fechar(); });
+let vendo;
+function ver(id){
+  const p = porId[id]; vendo = id;
+  $("v-img").src = src(p); $("v-img").alt = p.nome;
+  $("v-nome").textContent = p.nome; $("v-preco").textContent = brl(p.preco); $("v-desc").textContent = p.desc + ".";
+  $("v-ficha").innerHTML = `<dt>Esmalte</dt><dd>${ESMALTES[p.esm].nome}</dd><dt>Capacidade</dt><dd>${p.ml}</dd><dt>Medidas</dt><dd>${p.med}</dd><dt>Cuidados</dt><dd>Micro-ondas e lava-louças</dd>${p.unica ? "<dt>Estoque</dt><dd>Peça única</dd>" : ""}`;
+  abrir($("vista"));
+}
+$("v-add").addEventListener("click", () => { adicionar(vendo); fechar(); });
+document.addEventListener("click", e => {
+  const v = e.target.closest("[data-ver]"), a = e.target.closest("[data-add]");
+  if (a) adicionar(a.dataset.add); else if (v) ver(v.dataset.ver);
+});
+
+// ---------- processo: rolagem vertical vira deslize horizontal
+const proc = $("processo"), fita = $("fita"), barra = $("proc-barra");
+function rolarProcesso(){
+  const r = proc.getBoundingClientRect();
+  const p = Math.min(1, Math.max(0, -r.top / (proc.offsetHeight - innerHeight)));
+  const dist = fita.scrollWidth - innerWidth + Math.max(16, (innerWidth - 1280) / 2);
+  fita.style.transform = `translateX(${-p * Math.max(0, dist)}px)`;
+  barra.style.setProperty("--p", p);
+}
+addEventListener("scroll", () => { rolarProcesso(); $("topo").classList.toggle("rolou", scrollY > 10); }, {passive:true});
+addEventListener("resize", rolarProcesso);
+
+desenharFiltro(); desenharGrade(); desenharSacola(); rolarProcesso();
+</script>
+</body>
+</html>

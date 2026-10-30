@@ -27,7 +27,7 @@
   --font:"Overpass",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-html{scrollbar-color:#b9c4bc var(--floor)}
+html{scrollbar-color:#b9c4bc var(--floor);overflow-x:clip}
 body{margin:0;background:var(--floor);color:var(--ink);font:400 1.0625rem/1.6 var(--font);-webkit-font-smoothing:antialiased}
 ::selection{background:var(--ink);color:var(--floor)}
 a{color:inherit;text-underline-offset:.2em}
@@ -156,6 +156,42 @@ footer{padding:36px 0 56px;border-top:1px solid var(--rule);color:var(--ink-2);f
   .day b{font-size:1.1rem}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- fotos e carrosséis ---------- */
+.hero-media{position:relative}
+.corredor{margin:0;border-radius:24px;overflow:hidden;height:560px}
+.corredor img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-media .agenda{position:relative;z-index:2;margin:-230px 0 0 -72px;max-width:470px}
+.esp{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+.esp-txt ul{margin-top:18px}
+.esp-txt .go{display:inline-block;margin-top:18px}
+.esp-foto{margin:0;border-radius:20px;overflow:hidden;aspect-ratio:4/3;position:relative}
+.esp-foto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.esp:hover .esp-foto img{transform:scale(1.04)}
+.esp-foto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:8px;background:var(--c)}
+body[data-esp] .esp{transition:opacity .45s}
+body[data-esp="fisio"] .esp:not(.fisio),body[data-esp="odonto"] .esp:not(.odonto),body[data-esp="psico"] .esp:not(.psico),body[data-esp="nutri"] .esp:not(.nutri){opacity:.45}
+.faixa-fotos{overflow:hidden;margin-top:8px}
+.faixa-fotos .trilho{display:flex;gap:16px;width:max-content;animation:corre 50s linear infinite}
+.faixa-fotos:hover .trilho{animation-play-state:paused}
+@keyframes corre{to{transform:translateX(-50%)}}
+.faixa-fotos figure{margin:0;width:300px;flex:none;border-radius:20px;overflow:hidden;position:relative}
+.faixa-fotos figure img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.faixa-fotos figcaption{position:absolute;left:12px;bottom:12px;padding:6px 12px 4px;border-radius:999px;background:rgba(255,255,255,.88);font-weight:600;font-size:.85rem}
+.vozes .trilho{animation-duration:65s;animation-direction:reverse}
+.voz{width:340px;flex:none;background:var(--wall);border-radius:18px;padding:22px 22px 18px;box-shadow:0 1px 2px rgba(22,37,43,.06)}
+.voz p{margin:0 0 14px}
+.voz footer{display:flex;justify-content:space-between;align-items:center;color:var(--ink-2);font-size:.9rem;border:0;padding:0}
+.voz footer i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+@media (max-width:900px){
+  .corredor{height:300px}
+  .hero-media .agenda{margin:-70px 0 0 0;max-width:none}
+  .esp{grid-template-columns:1fr}
+  .esp-foto{order:-1}
+  .faixa-fotos figure{width:220px}
+  .voz{width:280px}
+}
+@media (prefers-reduced-motion:reduce){.faixa-fotos .trilho{animation:none}.faixa-fotos{overflow-x:auto}}
 </style>
 </head>
 <body>
@@ -178,6 +214,8 @@ footer{padding:36px 0 56px;border-top:1px solid var(--rule);color:var(--ink-2);f
         </ul>
       </div>
 
+      <div class="hero-media">
+      <figure class="corredor"><img src="img/corredor.webp" alt="Corredor da clínica com quadros e poltronas na sala de espera"></figure>
       <div class="agenda" id="agenda">
         <h2>Horários livres</h2>
         <p class="sub">Toque na especialidade, no dia e no horário.</p>
@@ -195,6 +233,7 @@ footer{padding:36px 0 56px;border-top:1px solid var(--rule);color:var(--ink-2);f
         </div>
         <p class="note">Horários de exemplo. A recepção confirma pelo WhatsApp.</p>
       </div>
+      </div>
     </div>
   </div>
 </header>
@@ -209,30 +248,47 @@ footer{padding:36px 0 56px;border-top:1px solid var(--rule);color:var(--ink-2);f
 
       <article class="esp fisio" style="--c:var(--fisio)">
         <span class="stub fisio"></span>
-        <div><h3>Fisioterapia</h3><span class="room">Sala 1 · faixa verde</span><p class="who">Dr. Rafael Moura · CREFITO 000000-F</p></div>
-        <ul><li>Dor nas costas e no pescoço</li><li>Pós-operatório de joelho e ombro</li><li>Lesão de corrida e academia</li><li>Pilates com aparelhos</li><li>RPG</li><li>Fisioterapia para idosos</li></ul>
-        <button class="go" data-pick="fisio">Ver horários de fisioterapia</button>
+        <div class="esp-txt">
+          <h3>Fisioterapia</h3><span class="room">Sala 1 · faixa verde</span><p class="who">Dr. Rafael Moura · CREFITO 000000-F</p>
+          <ul><li>Dor nas costas e no pescoço</li><li>Pós-operatório de joelho e ombro</li><li>Lesão de corrida e academia</li><li>Pilates com aparelhos</li><li>RPG</li><li>Fisioterapia para idosos</li></ul>
+          <button class="go" data-pick="fisio">Ver horários de fisioterapia</button>
+        </div>
+        <figure class="esp-foto"><img src="img/fisio.webp" alt="Fisioterapeuta alongando o ombro de uma paciente na maca" loading="lazy"></figure>
       </article>
       <article class="esp odonto" style="--c:var(--odonto)">
         <span class="stub odonto"></span>
-        <div><h3>Dentista</h3><span class="room">Sala 2 · faixa azul</span><p class="who">Dra. Helena Prado · CRO 00000</p></div>
-        <ul><li>Limpeza e prevenção</li><li>Restauração</li><li>Clareamento</li><li>Tratamento de canal</li><li>Atendimento infantil</li><li>Urgência no mesmo dia</li></ul>
-        <button class="go" data-pick="odonto">Ver horários do dentista</button>
+        <div class="esp-txt">
+          <h3>Dentista</h3><span class="room">Sala 2 · faixa azul</span><p class="who">Dra. Helena Prado · CRO 00000</p>
+          <ul><li>Limpeza e prevenção</li><li>Restauração</li><li>Clareamento</li><li>Tratamento de canal</li><li>Atendimento infantil</li><li>Urgência no mesmo dia</li></ul>
+          <button class="go" data-pick="odonto">Ver horários do dentista</button>
+        </div>
+        <figure class="esp-foto"><img src="img/odonto.webp" alt="Dentista conversando com a paciente na cadeira do consultório" loading="lazy"></figure>
       </article>
       <article class="esp psico" style="--c:var(--psico)">
         <span class="stub psico"></span>
-        <div><h3>Psicologia</h3><span class="room">Sala 3 · faixa laranja</span><p class="who">Marina Tavares · CRP 00/00000</p></div>
-        <ul><li>Ansiedade</li><li>Luto e mudanças</li><li>Terapia de casal</li><li>Adolescentes</li><li>Sessão online</li><li>Orientação de carreira</li></ul>
-        <button class="go" data-pick="psico">Ver horários de psicologia</button>
+        <div class="esp-txt">
+          <h3>Psicologia</h3><span class="room">Sala 3 · faixa laranja</span><p class="who">Marina Tavares · CRP 00/00000</p>
+          <ul><li>Ansiedade</li><li>Luto e mudanças</li><li>Terapia de casal</li><li>Adolescentes</li><li>Sessão online</li><li>Orientação de carreira</li></ul>
+          <button class="go" data-pick="psico">Ver horários de psicologia</button>
+        </div>
+        <figure class="esp-foto"><img src="img/psico.webp" alt="Psicóloga anotando durante a sessão com uma paciente" loading="lazy"></figure>
       </article>
       <article class="esp nutri" style="--c:var(--nutri)">
         <span class="stub nutri"></span>
-        <div><h3>Nutrição</h3><span class="room">Sala 4 · faixa amarela</span><p class="who">Lucas Andrade · CRN 0000</p></div>
-        <ul><li>Emagrecimento</li><li>Diabetes e pressão alta</li><li>Nutrição esportiva</li><li>Gestantes</li><li>Alimentação infantil</li><li>Bioimpedância</li></ul>
-        <button class="go" data-pick="nutri">Ver horários de nutrição</button>
+        <div class="esp-txt">
+          <h3>Nutrição</h3><span class="room">Sala 4 · faixa amarela</span><p class="who">Lucas Andrade · CRN 0000</p>
+          <ul><li>Emagrecimento</li><li>Diabetes e pressão alta</li><li>Nutrição esportiva</li><li>Gestantes</li><li>Alimentação infantil</li><li>Bioimpedância</li></ul>
+          <button class="go" data-pick="nutri">Ver horários de nutrição</button>
+        </div>
+        <figure class="esp-foto"><img src="img/nutri.webp" alt="Nutricionista sorrindo numa bancada com frutas e verduras" loading="lazy"></figure>
       </article>
     </section>
 
+    <section id="espaco" aria-labelledby="t-esp">
+      <h2 class="big" id="t-esp">Conheça o espaço</h2>
+      <p class="intro">Luz natural, salas com isolamento acústico e uma sala de espera onde dá para respirar.</p>
+      <div class="faixa-fotos" aria-label="Fotos do espaço"><div class="trilho" id="fotos-espaco"></div></div>
+    </section>
     <section id="primeira">
       <h2 class="big">Como é a primeira consulta</h2>
       <p class="intro">Para você chegar sabendo o que vai acontecer.</p>
@@ -241,6 +297,11 @@ footer{padding:36px 0 56px;border-top:1px solid var(--rule);color:var(--ink-2);f
         <div><span class="when">50 min</span><h3>Conversa e avaliação</h3><p>O profissional entende a sua queixa, examina e explica o que encontrou, sem pressa.</p></div>
         <div><span class="when">1 plano</span><h3>Você sai com um plano</h3><p>Quantas sessões, de quanto em quanto tempo e quanto custa, por escrito.</p></div>
       </div>
+    </section>
+
+    <section id="vozes" aria-labelledby="t-vozes">
+      <h2 class="big" id="t-vozes">Quem já passou por aqui</h2>
+      <div class="faixa-fotos vozes"><div class="trilho" id="lista-vozes"></div></div>
     </section>
 
     <section id="onde">
@@ -266,7 +327,7 @@ footer{padding:36px 0 56px;border-top:1px solid var(--rule);color:var(--ink-2);f
 
 <footer class="wrap">
   <span>Clínica Ipê · Av. dos Ipês, 1.250</span>
-  <span class="demo-tag">Site de demonstração: clínica, profissionais, registros e horários fictícios · <a href="../">ver outros modelos</a></span>
+  <span class="demo-tag">Site de demonstração: clínica, profissionais, registros, depoimentos e horários fictícios. Fotos: Unsplash · <a href="../">ver outros modelos</a></span>
 </footer>
 
 <script>
@@ -321,6 +382,17 @@ render();
 
 const hoje = new Date().getDay();
 document.querySelectorAll("#horario tr").forEach(tr => { if (tr.dataset.d.split(" ").includes(String(hoje))) tr.classList.add("today"); });
+
+// carrosséis do espaço e dos depoimentos
+const ESPACO = [["espera","Sala de espera"],["sala-psico","Sala de psicologia"],["consultorio","Consultório odontológico"],["exercicio","Fisioterapia"],["sala-fisio","Sala de terapia manual"],["prato","Plano alimentar"]];
+const fot = ([f, t], d) => `<figure ${d ? 'aria-hidden="true"' : ""}><img src="img/${f}.webp" alt="${d ? "" : t}" loading="lazy"><figcaption>${t}</figcaption></figure>`;
+document.getElementById("fotos-espaco").innerHTML = ESPACO.map(x => fot(x)).join("") + ESPACO.map(x => fot(x, 1)).join("");
+const VOZES = [["fisio","Voltei a correr depois de três meses parada. O Rafael explica cada exercício.","Carla, 34"],["odonto","Tenho pavor de dentista e a Dra. Helena foi de uma paciência enorme.","Renato, 41"],["psico","Agendei pelo site numa terça à noite e na quinta já estava na primeira sessão.","Bianca, 28"],["nutri","Plano alimentar com comida de verdade, sem cardápio impossível.","Sérgio, 52"],["fisio","Pilates com aparelho resolveu minha dor lombar.","Lúcia, 63"],["odonto","Levei meu filho de 6 anos e ele saiu querendo voltar.","Fernanda, 37"]];
+const voz = ([c, t, q], d) => `<article class="voz" style="--c:var(--${c})" ${d ? 'aria-hidden="true"' : ""}><p>${t}</p><footer><span>${q}</span><i></i></footer></article>`;
+document.getElementById("lista-vozes").innerHTML = VOZES.map(x => voz(x)).join("") + VOZES.map(x => voz(x, 1)).join("");
+// as faixas de fotos vão até a borda direita da tela, sem criar rolagem para o lado
+function sangrar(){ document.querySelectorAll(".faixa-fotos").forEach(f => { f.style.marginRight = "0px"; f.style.marginRight = -(document.documentElement.clientWidth - f.getBoundingClientRect().right) + "px"; }); }
+addEventListener("resize", sangrar); sangrar();
 </script>
 </body>
 </html>

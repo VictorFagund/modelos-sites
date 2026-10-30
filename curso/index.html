@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bolos que Vendem · Curso online de confeitaria</title>
+<meta name="description" content="Curso online de confeitaria: massa, recheio, montagem, acabamento e como precificar o seu bolo. Site de demonstração.">
+<style>
+@font-face{font-family:"Gabarito";src:url(../fonts/gabarito-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Gabarito";src:url(../fonts/gabarito-800.woff2) format("woff2");font-weight:800;font-display:swap}
+@font-face{font-family:"Hanken";src:url(../fonts/hanken-grotesk-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Hanken";src:url(../fonts/hanken-grotesk-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Hanken";src:url(../fonts/hanken-grotesk-600.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --cacau:#1a1210;          /* ganache */
+  --cacau-2:#251a16;
+  --cacau-3:#33241e;
+  --creme:#fbefe6;
+  --creme-2:#d8c4b6;
+  --creme-3:#a48d7e;
+  --framboesa:#ff4f6a;
+  --framboesa-2:#e63b57;
+  --pistache:#c9dc8a;
+  --display:"Gabarito","Hanken",system-ui,sans-serif;
+  --texto:"Hanken",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scrollbar-color:var(--cacau-3) var(--cacau);scroll-behavior:smooth}
+body{margin:0;background:var(--cacau);color:var(--creme);font:400 1.0625rem/1.6 var(--texto);-webkit-font-smoothing:antialiased}
+::selection{background:var(--framboesa);color:var(--cacau)}
+a{color:inherit;text-underline-offset:.22em}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--pistache);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1240px,100% - 32px);margin-inline:auto}
+.num{font-variant-numeric:tabular-nums}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;border:0;background:var(--framboesa);color:var(--cacau);font:700 1.02rem/1 var(--texto);text-decoration:none;cursor:pointer;transition:background .25s,transform .25s var(--ease),box-shadow .25s}
+.btn:hover{background:#ff6b82;transform:translateY(-2px);box-shadow:0 12px 28px -12px rgba(0,0,0,.6)}
+.btn.borda{background:transparent;color:var(--creme);box-shadow:inset 0 0 0 1.5px var(--creme-3)}
+.btn.borda:hover{box-shadow:inset 0 0 0 1.5px var(--creme)}
+
+/* ---------- topo ---------- */
+.topo{position:absolute;top:0;left:0;right:0;z-index:5}
+.topo .wrap{display:flex;justify-content:space-between;align-items:center;height:76px}
+.logo{font:800 1.25rem/1 var(--display);letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo svg{width:28px;height:28px;color:var(--framboesa)}
+.topo nav{display:flex;gap:28px;font-weight:500;font-size:.95rem}
+.topo nav a{text-decoration:none;color:var(--creme-2)}
+.topo nav a:hover{color:var(--creme)}
+
+/* ---------- abertura ---------- */
+.abertura{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.abertura .texto{display:flex;flex-direction:column;justify-content:center;padding:120px 48px 64px max(16px,calc((100vw - 1240px)/2))}
+.abertura h1{font:800 clamp(3.2rem,7vw,6.4rem)/.9 var(--display);letter-spacing:-.04em;margin:0 0 24px;text-wrap:balance}
+.abertura h1 span{color:var(--framboesa)}
+.abertura .lead{font-size:1.2rem;color:var(--creme-2);max-width:40ch;margin:0 0 34px}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.turma{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:40px;padding-top:26px;border-top:1px solid var(--cacau-3);color:var(--creme-2);font-size:.95rem}
+.relogio{display:flex;gap:6px}
+.relogio div{min-width:58px;padding:8px 6px 6px;border-radius:12px;background:var(--cacau-2);text-align:center;line-height:1}
+.relogio b{display:block;font:800 1.5rem/1 var(--display);color:var(--creme);font-variant-numeric:tabular-nums}
+.relogio small{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em}
+.abertura figure{margin:0;position:relative}
+.abertura figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:aproxima 14s var(--ease) both}
+@keyframes aproxima{from{transform:scale(1.12)}}
+.abertura figure::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--cacau) 0%,transparent 28%)}
+.selo{position:absolute;z-index:2;left:-56px;bottom:12%;width:150px;height:150px;border-radius:50%;background:var(--pistache);color:var(--cacau);display:grid;place-items:center;text-align:center;font:800 1rem/1.05 var(--display);animation:gira 22s linear infinite}
+.selo span{display:block;font-size:2.4rem;letter-spacing:-.03em}
+@keyframes gira{to{transform:rotate(360deg)}}
+.selo div{animation:gira 22s linear infinite reverse}
+
+/* ---------- números ---------- */
+.numeros{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--cacau-3)}
+.numeros div{padding:30px 24px}
+.numeros div+div{border-left:1px solid var(--cacau-3)}
+.numeros b{display:block;font:800 clamp(2rem,3.6vw,3rem)/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.numeros span{color:var(--creme-3)}
+
+/* ---------- galeria que corre ---------- */
+.galeria{padding:96px 0 40px;overflow:hidden}
+.galeria h2{margin-bottom:32px}
+.galeria .trilho{display:flex;gap:16px;width:max-content;animation:corre 55s linear infinite}
+.galeria:hover .trilho{animation-play-state:paused}
+@keyframes corre{to{transform:translateX(-50%)}}
+.galeria figure{margin:0;width:clamp(200px,20vw,270px);flex:none;border-radius:20px;overflow:hidden;position:relative}
+.galeria figure:nth-child(odd){margin-top:36px}
+.galeria img{aspect-ratio:4/5;width:100%;object-fit:cover}
+.galeria figcaption{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(26,18,16,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-size:.82rem;font-weight:500}
+
+section{padding:110px 0}
+h2{font:800 clamp(2.4rem,5vw,4.2rem)/.94 var(--display);letter-spacing:-.04em;margin:0;text-wrap:balance}
+.intro{color:var(--creme-2);max-width:52ch;margin:18px 0 0;font-size:1.1rem}
+
+/* ---------- módulos: lista à esquerda, foto que troca à direita ---------- */
+.modulos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:64px;margin-top:56px;align-items:start}
+.lista{display:grid}
+.mod{border-top:1px solid var(--cacau-3);padding:28px 0 26px;opacity:.45;transition:opacity .4s}
+.mod.ativo{opacity:1}
+.mod:last-child{border-bottom:1px solid var(--cacau-3)}
+.mod header{display:grid;grid-template-columns:3.2rem 1fr auto;align-items:baseline;gap:8px}
+.mod header b{font:800 1rem/1 var(--display);color:var(--framboesa);font-variant-numeric:tabular-nums}
+.mod h3{font:800 1.7rem/1.1 var(--display);letter-spacing:-.02em;margin:0}
+.mod header span{color:var(--creme-3);font-size:.9rem;white-space:nowrap}
+.mod p{margin:10px 0 0 3.2rem;color:var(--creme-2);max-width:48ch}
+.mod details{margin:14px 0 0 3.2rem}
+.mod summary{cursor:pointer;font-weight:600;font-size:.95rem;color:var(--pistache);list-style:none;display:inline-flex;align-items:center;gap:8px}
+.mod summary::-webkit-details-marker{display:none}
+.mod summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .3s}
+.mod details[open] summary::after{transform:rotate(225deg) translateY(-2px)}
+.mod ol{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:2px}
+.mod li{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--cacau-3);font-size:.95rem}
+.mod li span{color:var(--creme-3);font-variant-numeric:tabular-nums}
+.vitrine{position:sticky;top:96px;border-radius:24px;overflow:hidden;aspect-ratio:4/3.4;background:var(--cacau-2)}
+.vitrine img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .6s var(--ease),transform 1.2s var(--ease)}
+.vitrine img.on{opacity:1;transform:none}
+.vitrine .rot{position:absolute;left:16px;bottom:16px;padding:8px 14px;border-radius:999px;background:rgba(26,18,16,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);font-weight:600;font-size:.9rem}
+
+/* ---------- calculadora ---------- */
+.calc{background:var(--creme);color:var(--cacau);border-radius:32px;padding:56px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.calc h2{color:var(--cacau)}
+.calc .intro{color:#5b4a42}
+.campo{margin-bottom:28px}
+.campo label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:12px}
+.campo output{font:800 1.3rem/1 var(--display);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:4px;background:linear-gradient(var(--framboesa),var(--framboesa)) 0/var(--p,50%) 100% no-repeat,#e8d6c9;outline-offset:6px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--cacau);border:4px solid var(--creme);box-shadow:0 2px 8px rgba(0,0,0,.3);cursor:grab}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--cacau);border:4px solid var(--creme);cursor:grab}
+.resultado{background:var(--cacau);color:var(--creme);border-radius:24px;padding:34px 32px}
+.resultado small{color:var(--creme-3);font-size:.95rem}
+.resultado .grande{display:block;font:800 clamp(2.8rem,5.4vw,4.4rem)/1 var(--display);letter-spacing:-.04em;margin:6px 0 18px;font-variant-numeric:tabular-nums;color:var(--pistache)}
+.resultado dl{display:grid;grid-template-columns:1fr auto;gap:8px 16px;margin:0 0 6px;font-size:.95rem}
+.resultado dt{color:var(--creme-2)}
+.resultado dd{margin:0;font-variant-numeric:tabular-nums;text-align:right}
+.resultado p{margin:16px 0 0;font-size:.82rem;color:var(--creme-3)}
+
+/* ---------- instrutora ---------- */
+.prof{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:64px;align-items:center}
+.prof figure{margin:0;border-radius:28px;overflow:hidden;position:relative}
+.prof figure img{aspect-ratio:4/5;width:100%;object-fit:cover}
+.prof h2 span{color:var(--framboesa)}
+.prof p{color:var(--creme-2);max-width:54ch}
+.marcos{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.marcos span{padding:10px 16px;border-radius:999px;background:var(--cacau-2);font-weight:500;font-size:.95rem}
+
+/* ---------- depoimentos ---------- */
+.depo{position:relative}
+.depo .janela{overflow:hidden;margin-top:44px}
+.depo .fita{display:flex;transition:transform .7s var(--ease)}
+.depo article{flex:none;width:100%;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start}
+.depo blockquote{margin:0;font:600 clamp(1.5rem,3vw,2.3rem)/1.2 var(--display);letter-spacing:-.02em;text-wrap:balance;max-width:30ch}
+.depo .quem{margin-top:22px;color:var(--creme-3)}
+.depo .quem b{color:var(--creme)}
+.depo .av{width:84px;height:84px;border-radius:50%;object-fit:cover}
+.controles{display:flex;align-items:center;gap:14px;margin-top:40px}
+.seta{all:unset;cursor:pointer;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--cacau-3);transition:box-shadow .2s,background .2s}
+.seta:hover{box-shadow:inset 0 0 0 1.5px var(--creme);background:var(--cacau-2)}
+.seta svg{width:20px;height:20px}
+.pontos{display:flex;gap:8px;margin-left:8px}
+.pontos i{width:28px;height:4px;border-radius:2px;background:var(--cacau-3);overflow:hidden;position:relative}
+.pontos i.on::after{content:"";position:absolute;inset:0;background:var(--framboesa);transform-origin:left;animation:enche 6s linear both}
+@keyframes enche{from{transform:scaleX(0)}}
+
+/* ---------- preço ---------- */
+.preco{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:stretch}
+.cartao{border-radius:28px;padding:40px 36px;background:var(--cacau-2);display:flex;flex-direction:column;gap:18px}
+.cartao.top{background:var(--framboesa);color:var(--cacau)}
+.cartao h3{font:800 1.6rem/1 var(--display);margin:0}
+.cartao .valor{font:800 clamp(2.6rem,5vw,3.8rem)/1 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.cartao .valor small{font-size:1rem;font-weight:600;letter-spacing:0}
+.cartao ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cartao li{display:flex;gap:12px;align-items:flex-start}
+.cartao li svg{width:20px;height:20px;flex:none;margin-top:3px}
+.cartao.top .btn{background:var(--cacau);color:var(--creme)}
+.cartao.top .btn:hover{background:#000}
+.cartao .nota{font-size:.88rem;margin:0}
+.parcelas{display:flex;gap:6px;flex-wrap:wrap}
+.parcelas button{all:unset;cursor:pointer;padding:8px 14px;border-radius:999px;font-weight:600;font-size:.9rem;box-shadow:inset 0 0 0 1.5px rgba(26,18,16,.35)}
+.parcelas button[aria-pressed="true"]{background:var(--cacau);color:var(--creme);box-shadow:none}
+
+/* ---------- perguntas ---------- */
+.faq{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:56px}
+.faq details{border-top:1px solid var(--cacau-3);padding:22px 0}
+.faq details:last-child{border-bottom:1px solid var(--cacau-3)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font:700 1.2rem/1.3 var(--display)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.6rem;line-height:1;color:var(--framboesa);transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:12px 0 0;color:var(--creme-2);max-width:60ch}
+
+footer{padding:40px 0 110px;border-top:1px solid var(--cacau-3);color:var(--creme-3);font-size:.9rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px}
+.demo{padding:4px 10px;border:1px dashed var(--creme-3);border-radius:6px;font-size:.8rem}
+
+/* barra fixa de inscrição */
+.barra-fixa{position:fixed;z-index:10;left:50%;bottom:16px;width:min(720px,calc(100% - 24px));transform:translate(-50%,150%);transition:transform .5s var(--ease);display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 10px 10px 22px;border-radius:999px;background:rgba(37,26,22,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 18px 40px -16px rgba(0,0,0,.7)}
+.barra-fixa.on{transform:translate(-50%,0)}
+.barra-fixa span{font-weight:600;font-size:.95rem}
+.barra-fixa span small{display:block;color:var(--creme-3);font-weight:500}
+.barra-fixa .btn{min-height:48px;padding:0 22px}
+
+@supports (animation-timeline:view()){
+  .sobe{animation:sobe linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+  @keyframes sobe{from{opacity:0;transform:translateY(40px)}}
+}
+
+@media (max-width:960px){
+  .topo nav{display:none}
+  .abertura{grid-template-columns:1fr;min-height:auto}
+  .abertura figure{height:56vh;order:-1}
+  .abertura figure::after{background:linear-gradient(0deg,var(--cacau) 0%,transparent 40%)}
+  .abertura .texto{padding:0 16px 56px;margin-top:-80px;position:relative;z-index:2}
+  .selo{left:auto;right:16px;top:84px;bottom:auto;width:104px;height:104px;font-size:.8rem}
+  .selo span{font-size:1.8rem}
+  .numeros{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .numeros div:nth-child(3){border-left:0}
+  .numeros div:nth-child(n+3){border-top:1px solid var(--cacau-3)}
+  .modulos{grid-template-columns:1fr}
+  .vitrine{display:none}
+  .mod{opacity:1}
+  .calc{grid-template-columns:1fr;padding:32px 22px;gap:32px;border-radius:24px}
+  .prof,.preco,.faq{grid-template-columns:1fr;gap:32px}
+  .depo article{grid-template-columns:1fr;gap:18px}
+  section{padding:80px 0}
+  .mod header{grid-template-columns:2.4rem 1fr}
+  .mod header span{grid-column:2}
+  .mod p,.mod details{margin-left:2.4rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .galeria .trilho,.selo,.selo div,.abertura figure img{animation:none}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="#"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M5 18h22v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-8Z"/><path d="M7 12h18v5H7z" opacity=".75"/><path d="M15 4h2v6h-2z"/><circle cx="16" cy="3.5" r="2"/></svg>Bolos que Vendem</a>
+    <nav><a href="#aulas">Aulas</a><a href="#calculadora">Quanto rende</a><a href="#professora">Professora</a><a href="#inscricao">Inscrição</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="abertura" style="padding:0" aria-label="Apresentação">
+    <div class="texto">
+      <h1>Do primeiro bolo ao <span>primeiro pedido.</span></h1>
+      <p class="lead">Curso online de confeitaria para quem quer fazer bolo de festa bonito, que não afunda, e saber quanto cobrar por ele.</p>
+      <div class="acoes"><a class="btn" href="#inscricao">Quero me inscrever</a><a class="btn borda" href="#aulas">Ver as aulas</a></div>
+      <div class="turma"><span>A turma de novembro fecha em</span><div class="relogio num" id="relogio" aria-live="off"></div></div>
+    </div>
+    <figure>
+      <img src="img/hero.webp" alt="Confeiteira fazendo rosetas de chantilly com saco de confeitar num bolo de três tons">
+      <div class="selo" aria-hidden="true"><div><span>32</span>aulas<br>gravadas</div></div>
+    </figure>
+  </section>
+
+  <div class="wrap numeros">
+    <div><b class="num" data-conta="32">0</b><span>aulas em vídeo</span></div>
+    <div><b class="num" data-conta="9" data-sufixo=" h">0</b><span>de conteúdo</span></div>
+    <div><b class="num" data-conta="1240">0</b><span>alunas formadas</span></div>
+    <div><b class="num" data-conta="12" data-sufixo=" meses">0</b><span>de acesso</span></div>
+  </div>
+
+  <div class="galeria" aria-labelledby="t-gal">
+    <div class="wrap"><h2 id="t-gal">Feitos por alunas</h2></div>
+    <div class="trilho" id="galeria"></div>
+  </div>
+
+  <section id="aulas" aria-labelledby="t-aulas">
+    <div class="wrap">
+      <h2 id="t-aulas">O que você vai aprender</h2>
+      <p class="intro">Seis módulos, na ordem em que um bolo é feito. Você assiste no celular, no seu tempo, e volta na aula quando estiver com a mão na massa.</p>
+      <div class="modulos">
+        <div class="lista" id="lista"></div>
+        <div class="vitrine" id="vitrine" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculadora" aria-labelledby="t-calc">
+    <div class="wrap calc">
+      <div>
+        <h2 id="t-calc">Quanto dá para tirar por mês?</h2>
+        <p class="intro">Mexa nos valores. A conta usa o custo médio de ingredientes que ensinamos no módulo 6.</p>
+        <div style="margin-top:36px">
+          <div class="campo"><label for="qtd">Bolos por semana <output id="o-qtd" class="num">4</output></label><input type="range" id="qtd" min="1" max="20" value="4"></div>
+          <div class="campo"><label for="kg">Peso médio do bolo <output id="o-kg" class="num">2 kg</output></label><input type="range" id="kg" min="1" max="5" step=".5" value="2"></div>
+          <div class="campo"><label for="valor">Preço do quilo <output id="o-valor" class="num">R$ 90</output></label><input type="range" id="valor" min="50" max="180" step="5" value="90"></div>
+        </div>
+      </div>
+      <div class="resultado" aria-live="polite">
+        <small>Lucro estimado por mês</small>
+        <b class="grande" id="lucro">R$ 0</b>
+        <dl><dt>Faturamento</dt><dd id="fat">R$ 0</dd><dt>Ingredientes e embalagem (35%)</dt><dd id="custo">R$ 0</dd><dt>Horas de trabalho</dt><dd id="horas">0 h</dd></dl>
+        <p>Simulação. O resultado depende da sua cidade, dos seus custos e de quantos pedidos você consegue.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="professora" aria-labelledby="t-prof">
+    <div class="wrap prof">
+      <figure class="sobe"><img src="img/instrutora.webp" alt="Confeiteira de dólmã branco recheando um saco de confeitar" loading="lazy"></figure>
+      <div class="sobe">
+        <h2 id="t-prof">Quem ensina:<br><span>Carol Menezes</span></h2>
+        <p style="margin-top:24px">Começou vendendo fatia de bolo no trabalho, em 2014. Hoje tem uma confeitaria por encomenda e já ensinou mais de mil alunas a fazer o primeiro bolo de festa.</p>
+        <p>No curso ela mostra o que dá errado de verdade: massa que afunda, chantininho que derrete, bolo que chega torto na festa. E o que fazer em cada caso.</p>
+        <div class="marcos"><span>10 anos de encomendas</span><span>+3 mil bolos entregues</span><span>Responde as dúvidas na comunidade</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="depo" aria-labelledby="t-depo">
+    <div class="wrap">
+      <h2 id="t-depo">O que as alunas contam</h2>
+      <div class="janela"><div class="fita" id="depo"></div></div>
+      <div class="controles">
+        <button class="seta" id="ant" aria-label="Depoimento anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="seta" id="prox" aria-label="Próximo depoimento"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        <div class="pontos" id="pontos"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="inscricao" aria-labelledby="t-insc">
+    <div class="wrap">
+      <h2 id="t-insc" style="margin-bottom:44px">Inscrição</h2>
+      <div class="preco">
+        <div class="cartao top sobe">
+          <h3>Curso completo</h3>
+          <div class="parcelas" role="group" aria-label="Forma de pagamento" id="parcelas">
+            <button aria-pressed="false" data-x="1">À vista</button><button aria-pressed="false" data-x="6">6x</button><button aria-pressed="true" data-x="12">12x</button>
+          </div>
+          <div class="valor" id="valor-curso"></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>32 aulas, com apostila de receitas em PDF</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Planilha de preço do bolo, pronta para usar</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Comunidade de alunas com a professora</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Certificado de conclusão</li>
+          </ul>
+          <a class="btn" id="inscrever" href="#">Garantir minha vaga</a>
+          <p class="nota">7 dias para desistir e receber de volta, sem perguntas.</p>
+        </div>
+        <div class="cartao sobe">
+          <h3>Antes de decidir</h3>
+          <p style="margin:0;color:var(--creme-2)">Quer ver se o curso é para você? Assista grátis à primeira aula do módulo 1, sobre a massa que não afunda.</p>
+          <a class="btn borda" id="aula-gratis" href="#">Receber a aula grátis no WhatsApp</a>
+          <p class="nota" style="color:var(--creme-2)">Sem cadastro: a gente manda o link por mensagem.</p>
+          <img src="img/farinha.webp" alt="Mãos soltando farinha sobre a bancada" loading="lazy" style="border-radius:18px;margin-top:auto;aspect-ratio:16/8;object-fit:cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-faq" style="padding-top:20px">
+    <div class="wrap faq">
+      <h2 id="t-faq">Dúvidas</h2>
+      <div>
+        <details><summary>Preciso ter experiência?</summary><p>Não. O módulo 1 começa do zero: como medir, como untar a forma e por que a massa afunda.</p></details>
+        <details><summary>Preciso de batedeira planetária?</summary><p>Ajuda, mas não é obrigatória. Em cada receita mostramos como fazer com batedeira comum.</p></details>
+        <details><summary>Por quanto tempo tenho acesso?</summary><p>12 meses a partir da inscrição, com as aulas novas que entrarem nesse período.</p></details>
+        <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias para pedir o dinheiro de volta, pelo próprio WhatsApp.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>Bolos que Vendem · curso online de confeitaria</span>
+  <span class="demo">Site de demonstração: curso, professora, alunas, números e preços fictícios. Fotos: Unsplash · <a href="../">ver outros modelos</a></span>
+</footer>
+
+<div class="barra-fixa" id="barra-fixa"><span>Bolos que Vendem<small id="barra-preco"></small></span><a class="btn" href="#inscricao">Inscrever</a></div>
+
+<script>
+// Número de atendimento: troque aqui (formato 55DDDNUMERO). Vazio abre o WhatsApp para escolher o contato.
+const WHATSAPP = "";
+const PRECO = 397;
+const brl = (v, c = 2) => v.toLocaleString("pt-BR", {style:"currency", currency:"BRL", minimumFractionDigits:c, maximumFractionDigits:c});
+const wa = t => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
+const $ = id => document.getElementById(id);
+const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---------- contagem regressiva (turma fecha sempre no próximo domingo às 23h59)
+const fim = new Date(); fim.setDate(fim.getDate() + ((7 - fim.getDay()) % 7 || 7)); fim.setHours(23, 59, 59, 0);
+function relogio(){
+  let s = Math.max(0, (fim - Date.now()) / 1000 | 0);
+  const p = [["dias", s / 86400 | 0], ["horas", s % 86400 / 3600 | 0], ["min", s % 3600 / 60 | 0], ["seg", s % 60]];
+  $("relogio").innerHTML = p.map(([n, v]) => `<div><b>${String(v).padStart(2, "0")}</b><small>${n}</small></div>`).join("");
+}
+relogio(); setInterval(relogio, 1000);
+
+// ---------- números que contam ao aparecer
+const conta = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; conta.unobserve(e.target);
+  const el = e.target, alvo = +el.dataset.conta, suf = el.dataset.sufixo || "", t0 = performance.now();
+  const passo = t => { const k = Math.min(1, (t - t0) / 1400), v = Math.round(alvo * (1 - Math.pow(1 - k, 3))); el.textContent = v.toLocaleString("pt-BR") + suf; if (k < 1) requestAnimationFrame(passo); };
+  reduzido ? el.textContent = alvo.toLocaleString("pt-BR") + suf : requestAnimationFrame(passo);
+}), {threshold:.6});
+document.querySelectorAll("[data-conta]").forEach(el => conta.observe(el));
+
+// ---------- galeria
+const GAL = [["g1","Naked de frutas vermelhas","Ana, Goiânia"],["g2","Bolo de festa com chantininho","Lúcia, Natal"],["g3","Mil folhas de doce de leite","Bruna, Campinas"],["g4","Drip de chocolate","Kelly, Salvador"],["g5","Topo de flores","Rita, Londrina"],["g6","Cobertura de ganache","Sueli, Belém"],["g7","Bolo de aniversário infantil","Dani, Vitória"],["g8","Drip rosa com casquinha","Vera, Maceió"]];
+const fig = ([i, t, q], dup) => `<figure ${dup ? 'aria-hidden="true"' : ""}><img src="img/${i}.webp" alt="${dup ? "" : t}" loading="lazy"><figcaption>${q}</figcaption></figure>`;
+$("galeria").innerHTML = GAL.map(g => fig(g)).join("") + GAL.map(g => fig(g, 1)).join("");
+
+// ---------- módulos
+const MODS = [
+  ["Massas que não afundam", "Pão de ló, massa amanteigada e chocolate. Forno, tempo e o teste do palito que não mente.", "m1", [["Por que a massa afunda", "12 min"], ["Pão de ló de 6 ovos", "18 min"], ["Massa amanteigada", "15 min"], ["Chocolate úmido", "16 min"], ["Como cortar camadas retas", "9 min"]]],
+  ["Recheios e caldas", "Brigadeiro de colher, ninho, frutas vermelhas e as caldas que deixam o bolo molhado sem desmanchar.", "m2", [["Calda simples e de leite", "8 min"], ["Brigadeiro de colher", "14 min"], ["Creme de ninho", "12 min"], ["Geleia de frutas vermelhas", "11 min"]]],
+  ["Montagem e naked cake", "Escorar, rechear e nivelar. O bolo que fica em pé no carro até a festa.", "m3", [["Ordem de montagem", "13 min"], ["Escoramento com acetato", "10 min"], ["Naked cake de frutas", "17 min"], ["Transporte sem susto", "7 min"]]],
+  ["Chantininho e bicos", "Ponto certo do chantininho, os 5 bicos que resolvem tudo e rosetas que não murcham.", "m4", [["Ponto do chantininho", "11 min"], ["Os 5 bicos essenciais", "16 min"], ["Rosetas e babados", "14 min"], ["Escrita no bolo", "9 min"]]],
+  ["Acabamento liso e drip", "Lateral lisinha com espátula, drip de chocolate que escorre no lugar certo e topo com confeitos.", "m5", [["Lateral lisa com espátula", "15 min"], ["Drip de chocolate", "12 min"], ["Topo com confeitos e flores", "10 min"]]],
+  ["Preço e primeiras vendas", "Quanto cobrar por quilo, como montar o cardápio e como pegar as primeiras encomendas no WhatsApp.", "m6", [["Custo real de um bolo", "14 min"], ["Preço por quilo", "12 min"], ["Cardápio e fotos com celular", "13 min"], ["As primeiras 10 encomendas", "15 min"]]],
+];
+const mins = l => l.reduce((a, [, d]) => a + parseInt(d), 0);
+$("lista").innerHTML = MODS.map(([t, d, img, aulas], i) => `
+  <article class="mod${i ? "" : " ativo"}" data-i="${i}">
+    <header><b>${String(i + 1).padStart(2, "0")}</b><h3>${t}</h3><span class="num">${aulas.length} aulas · ${mins(aulas)} min</span></header>
+    <p>${d}</p>
+    <details><summary>Ver as aulas</summary><ol>${aulas.map(([a, m]) => `<li>${a}<span>${m}</span></li>`).join("")}</ol></details>
+  </article>`).join("");
+$("vitrine").innerHTML = MODS.map(([t, , img], i) => `<img src="img/${img}.webp" alt="" class="${i ? "" : "on"}" loading="${i ? "lazy" : "eager"}">`).join("") + `<span class="rot" id="rot">Módulo 01 · ${MODS[0][0]}</span>`;
+const fotos = [...$("vitrine").querySelectorAll("img")], mods = [...document.querySelectorAll(".mod")];
+const vigia = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const i = +e.target.dataset.i;
+  mods.forEach((m, k) => m.classList.toggle("ativo", k === i));
+  fotos.forEach((f, k) => f.classList.toggle("on", k === i));
+  $("rot").textContent = `Módulo ${String(i + 1).padStart(2, "0")} · ${MODS[i][0]}`;
+}), {rootMargin:"-45% 0px -45% 0px"});
+mods.forEach(m => vigia.observe(m));
+
+// ---------- calculadora
+function calcular(){
+  const q = +$("qtd").value, kg = +$("kg").value, v = +$("valor").value;
+  [["qtd", q], ["kg", kg], ["valor", v]].forEach(([id]) => { const r = $(id); r.style.setProperty("--p", (r.value - r.min) / (r.max - r.min) * 100 + "%"); });
+  $("o-qtd").textContent = q; $("o-kg").textContent = String(kg).replace(".", ",") + " kg"; $("o-valor").textContent = brl(v, 0);
+  const fat = q * 4.3 * kg * v, custo = fat * .35;
+  $("fat").textContent = brl(fat, 0); $("custo").textContent = "− " + brl(custo, 0);
+  $("lucro").textContent = brl(fat - custo, 0); $("horas").textContent = Math.round(q * 4.3 * (2 + kg)) + " h";
+}
+["qtd", "kg", "valor"].forEach(id => $(id).addEventListener("input", calcular)); calcular();
+
+// ---------- depoimentos
+const DEP = [
+  ["Eu fazia bolo só para a família. No segundo mês depois do curso já tinha encomenda toda sexta.", "Patrícia Lima", "Uberlândia", "g2"],
+  ["O módulo de preço me fez parar de cobrar R$ 40 num bolo de dois quilos. Hoje cobro o que vale.", "Jéssica Rocha", "Fortaleza", "g1"],
+  ["A aula de transporte salvou meu primeiro bolo de casamento. Chegou inteiro, com 40 minutos de estrada.", "Marta Souza", "Joinville", "g5"],
+];
+$("depo").innerHTML = DEP.map(([t, n, c, img]) => `<article><img class="av" src="img/${img}.webp" alt=""><div><blockquote>${t}</blockquote><div class="quem"><b>${n}</b> · ${c}</div></div></article>`).join("");
+let atual = 0, auto;
+function ir(i){
+  atual = (i + DEP.length) % DEP.length;
+  $("depo").style.transform = `translateX(${-atual * 100}%)`;
+  $("pontos").innerHTML = DEP.map((_, k) => `<i class="${k === atual ? "on" : ""}"></i>`).join("");
+  clearTimeout(auto); if (!reduzido) auto = setTimeout(() => ir(atual + 1), 6000);
+}
+$("ant").addEventListener("click", () => ir(atual - 1)); $("prox").addEventListener("click", () => ir(atual + 1)); ir(0);
+
+// ---------- preço e parcelas
+let vezes = 12;
+function preco(){
+  const v = vezes === 1 ? PRECO * .9 : PRECO / vezes;
+  $("valor-curso").innerHTML = vezes === 1 ? `${brl(v)} <small>no Pix (10% off)</small>` : `${vezes}x ${brl(v)} <small>sem juros</small>`;
+  document.querySelectorAll("#parcelas button").forEach(b => b.setAttribute("aria-pressed", +b.dataset.x === vezes));
+  $("barra-preco").textContent = vezes === 1 ? `${brl(v)} no Pix` : `${vezes}x de ${brl(v)}`;
+  $("inscrever").href = wa(`Olá! Quero me inscrever no curso Bolos que Vendem (${vezes === 1 ? "à vista no Pix" : vezes + "x no cartão"}).`);
+}
+$("parcelas").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { vezes = +b.dataset.x; preco(); } });
+preco();
+$("aula-gratis").href = wa("Olá! Quero receber a aula grátis do curso Bolos que Vendem.");
+document.querySelectorAll('a[href^="https://wa.me"]').forEach(a => { a.target = "_blank"; a.rel = "noopener"; });
+$("inscrever").target = "_blank"; $("inscrever").rel = "noopener";
+
+// ---------- barra fixa: aparece depois da abertura e some na inscrição
+const insc = $("inscricao");
+addEventListener("scroll", () => {
+  const r = insc.getBoundingClientRect();
+  $("barra-fixa").classList.toggle("on", scrollY > innerHeight * .8 && (r.top > innerHeight || r.bottom < 0));
+}, {passive:true});
+</script>
+</body>
+</html>
